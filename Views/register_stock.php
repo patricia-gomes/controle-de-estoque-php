@@ -1,0 +1,1 @@
+<h1>Registro de estoque</h1>
