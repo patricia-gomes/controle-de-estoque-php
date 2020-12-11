@@ -59,15 +59,18 @@ class Core {
 			$this->controller = 'notfoundController';
 			$this->action = 'index';
 		}
+	//	echo $this->controller."</br>";
 	}
 	//Verifica se o método ou action exite
 	private function validate_action() {
+	//	echo $this->action."</br>";
 		//Se o metodo nao existir chama o notfoundController
-		if(!method_exists('Controllers\\'.$this->controller, $this->action)) {
+		if(!method_exists($this->controller, $this->action)) {
 			$this->controller = 'notfoundController';
 			$this->action = 'index';
-		} 
-
+		}
+	//	echo $this->controller."</br>";
+	//	echo $this->action;exit;
 	}
 
 	/*Esse é o unico metodo que vai ser acessado fora dessa classe por isso esta como public.
@@ -76,12 +79,12 @@ class Core {
 		$this->run_controller = "Controllers/".$this->controller;//Endereço onde esta os controllers
 
 		$this->validate_controller();
-
+		
 		//Instancia o controller
 		$this->run_controller = new $this->controller();
-
+		
 		$this->validate_action();
-	
+
 		//Envia o controller a action e os parametros
 		call_user_func_array(array($this->run_controller, $this->action), $this->params);
 	}
