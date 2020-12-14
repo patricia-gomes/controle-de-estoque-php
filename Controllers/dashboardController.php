@@ -2,6 +2,8 @@
 class dashboardController extends Controller {
 
 	public function index() {
+		$model = new Model();
+
 		//Verificando se fez o login caso contrario redireciona para login
 		if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin'])) { 
 			header("Location: ".BASE_URL."/login");

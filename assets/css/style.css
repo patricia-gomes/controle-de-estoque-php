@@ -1,12 +1,12 @@
 .menu {
-	background-color:#2727d4; 
+	background-color:#454582;
 }
 .menu a {
 	color:white;
 	text-decoration: none;
 }
 .side_bar {
-	background-color: #57e257;
+	background-color: #81e881;
 	min-height: 600px;
 }
 .content {
@@ -18,7 +18,9 @@
 }
 .alert_panel {
 	min-height: 200px;
-	background-color: #f33535;
+	background-color: #ec3838e6;
+	border: 1px solid #d41616b0;
+	box-shadow: 0 4px 8px 0 rgb(43 34 34 / 20%), 0 6px 20px 0 rgb(115 103 103 / 19%);
 }
 .alert_panel_title {
 	font-weight: bold;
@@ -50,8 +52,17 @@
 	color:white;
 	text-decoration: none;
 }
+.serach_button {
+	margin-bottom: 50px;
+}
+
+.table_overflow {
+	max-height:350px;
+    overflow-y:auto;
+}
+
 
 .footer {
 	background-color: #000;
-	color:#585a56;
+	color:#737571;
 }

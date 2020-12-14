@@ -1,9 +1,9 @@
 <?php
 session_start();
-require 'config.php';
-spl_autoload_register(function($class) {
+define("BASE_URL", "https://localhost/controle_de_estoque");
 /*Quando uma classe for instanciada em qualquer parte do sistema,
 a função vai percorrer essas tres pastas para encontra-la*/
+spl_autoload_register(function($class) {
 	
 	if(file_exists("controllers/".$class.".php")) {
 		require __DIR__."/controllers/".$class.".php";//Carrega a classe especifica

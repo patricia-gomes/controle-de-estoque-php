@@ -43,12 +43,12 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Caneta Bic Preta</td>
+										<td><a href="<?php echo BASE_URL; ?>/exit/remove">Caneta Bic Preta</a></td>
 										<td>R$ 1,25</td>
 										<td>11</td>
 									</tr>
 									<tr>
-										<td>Caneta Nankin</td>
+										<td><a href="<?php echo BASE_URL; ?>/exit/remove">Caneta Nankin</a></td>
 										<td>R$ 10,25</td>
 										<td>5</td>
 									</tr>
@@ -59,4 +59,3 @@
 				</div>
 			</div>
 		</div>
-	</div>
