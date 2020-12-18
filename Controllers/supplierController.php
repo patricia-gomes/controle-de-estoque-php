@@ -2,7 +2,17 @@
 class supplierController extends Controller {
 
 	public function index() {
+		$model = new Model();
+		$supplier = new Supplier();
+
+		//Seleciona todos os fornecedores
+		$all_supplier = $model->Select_All('supplier');
+		$state = $supplier->select_state_from_supplier();
+
+		//Envia os dados para a view
 		$dados['name_title'] = "Supplier | Controle de Estoque";
+		$dados['all_supplier'] = $all_supplier;
+		$dados['state'] = $state;
 
 		$this->load_template('supplier', $dados);
 	}

@@ -3,8 +3,16 @@ class productsController extends Controller {
 
 	public function index() {
 		$dados = array();
+		$model = new Model;
+		$helper = new Helper();
 
+		//Selecionar todos os produtos
+		$all_products = $model->Select_All('products');
+
+		//Endia os dados para a view
 		$dados['name_title'] = "Products | Controle de estoque";
+		$dados['helper'] = $helper;
+		$dados['all_products'] = $all_products;
 
 		$this->load_template('products', $dados);
 	}
@@ -12,6 +20,7 @@ class productsController extends Controller {
 	public function insert() {
 		$dados = array();
 
+		//Envia os dados para a view
 		$dados['name_title'] = "Insert produt | Controle de estoque";
 
 		$this->load_template('insert_produt', $dados);
@@ -22,8 +31,7 @@ class productsController extends Controller {
 
 		if(!empty($_POST['name']) && !empty($_POST['value']) && !empty($_FILES['img'])) {
 			$name = $_POST['name'];
-			//Substitui a vírgula pelo ponto para ser inserido no banco no formato correto
-			$value = str_replace(',', '.', $_POST['value']);
+			$value = $_POST['value'];
 
 			/* Upload de imagem
 			* Vai armazenar a imagem em uma pasta chamada uploads

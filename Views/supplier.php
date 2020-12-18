@@ -21,54 +21,54 @@
 				</div>
 				<!-- ./ Row form busca e menu button -->
 				<!-- Tabela -->
-				<div class="col-7">
+				<div class="col-12">
 					<div class="table-responsive">
 						<table class="table table-bordered table-striped table-hover table-sm">
 							<thead class="thead-light">
 								<tr>
 									<th>Nome</th>
 									<th>CNPJ</th>
+									<th>Telefone</th>
+									<th>Email</th>
+									<th>Cidade</th>
+									<th>Rua</th>
+									<th>Bairro</th>
+									<th>Número</th>
+									<th>Estado</th>
 									<th>Editar</th>
 									<th>Deletar</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Maicon Hugo</td>
-									<td>15.174.045/0001-50</td>
-									<td><form method="POST">
-											<!-- Button trigger modal editar -->
-											<button type="submit" formmethod="post" name="editar" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
-										  		<i class="fa fa-edit"></i>
-											</button>
-										</form>
-									</td>
-									<td><form method="POST">
-											<!-- Button trigger modal excluir -->
-											<button type="submit" formmethod="post" name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
-										  		<i class="fa fa-trash-o"></i>
-											</button>
-										</form>
-									</td>
-								</tr>
-								<tr>
-									<td>Canon Moa LTDA</td>
-									<td>14.405.276/0001-64</td>
-									<td><form method="POST">
-											<!-- Button trigger modal editar -->
-											<button type="submit" formmethod="post" name="editar" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
-										  		<i class="fa fa-edit"></i>
-											</button>
-										</form>
-									</td>
-									<td><form method="POST">
-											<!-- Button trigger modal excluir -->
-											<button type="input"  name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#excluir" title="Excluir" value="2">
-										  		<i class="fa fa-trash-o"></i>
-											</button>
-										</form>
-									</td>
-								</tr>
+								<?php if(!empty($all_supplier)): ?>
+									<?php foreach($all_supplier as $supplier): ?>
+										<tr>
+											<td><?php echo $supplier['name']; ?></td>
+											<td><?php echo $supplier['cnpj']; ?></td>
+											<td><?php echo $supplier['phone']; ?></td>
+											<td><?php echo $supplier['email']; ?></td>
+											<td><?php echo $supplier['city']; ?></td>
+											<td><?php echo $supplier['address']; ?></td>
+											<td><?php echo $supplier['neighborhood']; ?></td>
+											<td><?php echo $supplier['number_address']; ?></td>
+											<td><?php echo $state['name_state']; ?></td>
+											<td><form method="POST">
+													<!-- Button trigger modal editar -->
+													<button type="submit" formmethod="post" name="editar" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
+												  		<i class="fa fa-edit"></i>
+													</button>
+												</form>
+											</td>
+											<td><form method="POST">
+													<!-- Button trigger modal excluir -->
+													<button type="submit" formmethod="post" name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
+												  		<i class="fa fa-trash-o"></i>
+													</button>
+												</form>
+											</td>
+										</tr>
+									<?php endforeach; ?>
+								<?php endif; ?>
 							</tbody>
 						</table>
 					</div>

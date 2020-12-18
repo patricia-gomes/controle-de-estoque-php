@@ -33,42 +33,28 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Caneta Bic Preta</td>
-									<td>R$ 1,25</td>
-									<td><form method="POST">
-											<!-- Button trigger modal editar -->
-											<button type="submit" formmethod="post" name="editar" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
-										  		<i class="fa fa-edit"></i>
-											</button>
-										</form>
-									</td>
-									<td><form method="POST">
-											<!-- Button trigger modal excluir -->
-											<button type="submit" formmethod="post" name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
-										  		<i class="fa fa-trash-o"></i>
-											</button>
-										</form>
-									</td>
-								</tr>
-								<tr>
-									<td>Caneta Nankin</td>
-									<td>R$ 10,25</td>
-									<td><form method="POST">
-											<!-- Button trigger modal editar -->
-											<button type="submit" formmethod="post" name="editar" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
-										  		<i class="fa fa-edit"></i>
-											</button>
-										</form>
-									</td>
-									<td><form method="POST">
-											<!-- Button trigger modal excluir -->
-											<button type="submit" formmethod="post" name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
-									  			<i class="fa fa-trash-o"></i>
-											</button>
-										</form>
-									</td>
-								</tr>
+								<?php if(!empty($all_products)): ?>
+									<?php foreach($all_products as $product): ?>
+									<tr>
+										<td><?php echo $product['name']; ?></td>
+										<td><?php echo $helper->replace_point_in_comma($product['value_medium']); ?></td>
+										<td><form method="POST">
+												<!-- Button trigger modal editar -->
+												<button type="submit" formmethod="post" name="editar" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
+											  		<i class="fa fa-edit"></i>
+												</button>
+											</form>
+										</td>
+										<td><form method="POST">
+												<!-- Button trigger modal excluir -->
+												<button type="submit" formmethod="post" name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
+											  		<i class="fa fa-trash-o"></i>
+												</button>
+											</form>
+										</td>
+									</tr>
+									<?php endforeach; ?>
+								<?php endif; ?>
 							</tbody>
 						</table>
 					</div>
