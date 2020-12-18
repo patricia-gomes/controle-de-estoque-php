@@ -29,9 +29,9 @@
 					<ul>
 						<li><a href="<?php echo BASE_URL; ?>/dashboard">Estoque</a></li>
 						<li><a href="<?php echo BASE_URL; ?>/products">Produtos</a></li>
+						<li><a href="<?php echo BASE_URL; ?>/supplier">Fornecedores</a></li>
 						<li><a href="<?php echo BASE_URL; ?>/entry">Entradas</a></li>
 						<li><a href="<?php echo BASE_URL; ?>/exit">Saídas</a></li>
-						<li><a href="<?php echo BASE_URL; ?>/supplier">Fornecedores</a></li>
 						<li><a href="<?php echo BASE_URL; ?>/stock">Cadastrar Estoque</a></li>
 					</ul>
 				</div>
