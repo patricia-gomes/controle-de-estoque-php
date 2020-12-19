@@ -7,7 +7,7 @@ class Core {
 	private $array_url;
 	private $controller;
 	private $action;
-	private $params;
+	private $params = array();
 	private $run_controller;
 
 	public function __construct() {
@@ -47,10 +47,11 @@ class Core {
 	}
 	//Define os parametros
 	private function set_params() {
-		array_shift($this->array_url);
-		//Por padrao os parametros nao sao obrigatorios, entao vao ficar com array vazio
-		$this->params = (count($this->array_url) > 0) ? $this->url : array();
-	
+		array_shift($this->array_url);//remove o controller, action
+		//Tirando o controller e action o que vier depois é parametros
+		if (count($this->array_url) > 0) {
+			$this->params = $this->array_url;
+		}
 	}
 	//Verifica se o controller existe
 	private function validate_controller() {
@@ -59,18 +60,14 @@ class Core {
 			$this->controller = 'notfoundController';
 			$this->action = 'index';
 		}
-	//	echo $this->controller."</br>";
 	}
 	//Verifica se o método ou action exite
 	private function validate_action() {
-	//	echo $this->action."</br>";
 		//Se o metodo nao existir chama o notfoundController
 		if(!method_exists($this->controller, $this->action)) {
 			$this->controller = 'notfoundController';
 			$this->action = 'index';
 		}
-	//	echo $this->controller."</br>";
-	//	echo $this->action;exit;
 	}
 
 	/*Esse é o unico metodo que vai ser acessado fora dessa classe por isso esta como public.
