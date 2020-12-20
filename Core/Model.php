@@ -58,7 +58,7 @@ class Model extends Config {
 		$query = $this->pdo->prepare("INSERT INTO {$table} (".implode(', ', $dados).") VALUES (".implode(', ', $dados2).")");
 		/*Percorre o array das colunas para vincular o valor a coluna*/
 		foreach($colunas as $coluna => $value) {
-			 $query->bindValue(":$coluna", "$value");
+			$query->bindValue(":$coluna", "$value");
 		}
 		$query->execute();
 	}
@@ -67,16 +67,17 @@ class Model extends Config {
 	public function Update_With_Where($table, $newDados = array(), $where = array()) {
 		
 		if(!empty($table) && !empty($newDados) && !empty($where)) {
-			/*query exemplo: UPDATE produtos SET coluna = 'value' WHERE coluna2 = value2;*/
+			/*query exemplo: UPDATE produtos SET coluna = 'value', coluna2 = 'value2' WHERE
+			   coluna2 = value2;*/
 			$query = "UPDATE {$table} SET ";
 			/*Percorendo o array das colunas para pegar as colunas da tabela e montar a query*/
 			foreach($newDados as $coluna => $value) {
-				$dados = "$coluna = '{$value}'";
-				$query.=$dados;
+				$dados[] = "$coluna = '$value'";
 			}
+			$query.= implode(', ', $dados);//Adiciona a vírgula menos a última
 			//Percorendo o array do where e concatenando com o restante da query
-			foreach($where as $coluna => $value) {
-				$query.=" WHERE $coluna = {$value}";
+			foreach($where as $id => $value_id) {
+				$query.=" WHERE $id = {$value_id}";
 			}
 			$this->pdo->query($query);
 		}
