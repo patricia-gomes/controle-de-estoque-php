@@ -28,35 +28,65 @@ class productsController extends Controller {
 
 	public function register() {
 		$model = new Model;
+		$products = new Products();
 
 		if(!empty($_POST['name']) && !empty($_POST['value']) && !empty($_FILES['img'])) {
 			$name = $_POST['name'];
-			$value = $_POST['value'];
-
-			/* Upload de imagem
-			* Vai armazenar a imagem em uma pasta chamada uploads
-			*/
-			//Verificando se a img existe
-			if(!empty($_FILES['img']['tmp_name'])) {
-				if($_FILES['img']['type'] == 'image/png') {
-					$newName = 'img_'.md5(rand(0,99)).'.png';
-
-				} else if($_FILES['img']['type'] == 'image/jpg') {
-					$newName = 'img_'.md5(rand(0,99)).'.jpg';
-
-				} else if($_FILES['img']['type'] == 'image/jpeg') {
-					$newName = 'img_'.md5(rand(0,99)).'.jpeg';
-				}
-				$path_img = 'uploads/'.$newName;
-				//Move a imagem para a pasta uploads
-				move_uploaded_file($_FILES['img']['tmp_name'], $path_img);
-			}
-			//.upload de imagem
-
+			//Para o banco de dados aceitar o preço tem de ser inserido com ponto
+			$value = str_replace(',', '.', $_POST['value']);
+			
+			$path_img = $products->upload_img($_FILES['img']);
 			//Envia os dados para o banco
-			$model->Insert('products', array('name'=>$name, 'value_medium'=> $value, 'url_img_product'=>$path_img));
+			$model->Insert('products', array('name'=> $name, 'value_medium'=> $value, 'url_img_product'=>$path_img));
+
 			//redireciona para a exibição de produtos
 			header('Location: '.BASE_URL.'/products');
 		}
+	}
+
+	public function edit($id) {
+		$model = new Model;
+		$helper = new Helper();
+
+		//Verifica se o id foi enviado 
+		if(!empty($id)) {
+			//Seleciona todos os dados desse produto especifico pelo id
+			$data_product = $model->Select_With_Where('products', array('id' => $id));
+		}
+
+		//Envia os dados para a view
+		$dados['name_title'] = "Edit product | Controle de estoque";
+		$dados['helper'] = $helper;
+		$dados['data_product'] = $data_product;
+
+		$this->load_template('edit_product', $dados);
+	}
+	//Atualiza as informações de produtos no banco
+	public function update() {
+		$model = new Model();
+		$products = new Products();
+		
+		//Verifica se o id foi enviado para atualizar pelo id
+		if(!empty($_POST['id_product'])) {
+			//Altera
+			if (!empty($_POST['name']) || !empty($_POST['value'])) {
+				$value = str_replace('R$', ' ', $_POST['value']);//Substituindo R$ por ''
+				$value = str_replace(',', '.', $value);//Substituindo , por .
+
+				//Atualiza as duas colunas no banco
+				$model->Update_With_Where('products', array(
+					'name' => $_POST['name'],
+					'value_medium' => $value
+				), array('id' => $_POST['id_product']));
+				header('Location: '.BASE_URL.'/products');
+			}
+			//Altera a imagem
+			if(!empty($_FILES['img']['tmp_name'])) {
+				//Url da imagem
+				$path_img = $products->upload_img($_FILES['img']);
+
+				$model->Update_With_Where('products', array('url_img_product' => $path_img), array('id' => $_POST['id_product']));
+			}
+		}	
 	}
 }

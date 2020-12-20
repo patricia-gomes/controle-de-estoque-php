@@ -38,9 +38,9 @@
 									<tr>
 										<td><?php echo $product['name']; ?></td>
 										<td><?php echo $helper->replace_point_in_comma($product['value_medium']); ?></td>
-										<td><form method="POST">
+										<td><form method="GET" action="<?php echo BASE_URL; ?>/products/edit/<?php echo $product['id']; ?>">
 												<!-- Button trigger modal editar -->
-												<button type="submit" formmethod="post" name="editar" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
+												<button type="input" formmethod="post" name="id" value="<?php echo $product['id']; ?>"  name="editar" class="btn btn-warning" data-toggle="modal" data-target="#editar" title="Editar">
 											  		<i class="fa fa-edit"></i>
 												</button>
 											</form>
