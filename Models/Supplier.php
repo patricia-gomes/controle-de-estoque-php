@@ -1,13 +1,15 @@
 <?php
 class Supplier extends Model {
 
-	public function select_state_from_supplier() {
-		$query = "SELECT supplier.id_state, states.id, states.name_state FROM supplier 
-		INNER JOIN states ON states.id = supplier.id_state";
+	public function select_state_from_supplier($id) {
+		$query = "SELECT supplier.id_state, states.name_state FROM supplier 
+		INNER JOIN states ON states.id = supplier.id_state
+		WHERE states.id = $id";
 		$result = $this->pdo->query($query);
 
 		if($result->rowCount() > 0) {
-			return $result->fetch();
+			$result = $result->fetch();
+			return $result['name_state'];
 		}
 	}
 }

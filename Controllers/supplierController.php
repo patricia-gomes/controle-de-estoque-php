@@ -7,12 +7,15 @@ class supplierController extends Controller {
 
 		//Seleciona todos os fornecedores
 		$all_supplier = $model->Select_All('supplier');
-		$state = $supplier->select_state_from_supplier();
+
+		//Retorna o estado do fornecedor
+	//	$state_supplier = ;
 
 		//Envia os dados para a view
 		$dados['name_title'] = "Supplier | Controle de Estoque";
+		$dados['supplier'] = $supplier;
 		$dados['all_supplier'] = $all_supplier;
-		$dados['state'] = $state;
+	//	$dados['state_supplier'] = $state_supplier;
 
 		$this->load_template('supplier', $dados);
 	}
@@ -58,6 +61,66 @@ class supplierController extends Controller {
 			));
 			//Redireciona para exibição de fornecedores (supplier)
 			header('Location: '.BASE_URL.'/supplier');
+		}
+	}
+
+	public function edit($id_supplier) {
+		$model = new Model();
+		$supplier = new Supplier();
+
+		//Verifica se o id do fornecedor foi enviado para buscar as informações dele no banco 
+		if(!empty($id_supplier)) {
+			//Retorna todas as informaçoes de fornedor
+			$data_supplier = $model->Select_With_Where('supplier', array('id' => $id_supplier));
+			//Retorna o estado do fornecedor
+			$state_supplier = $supplier->select_state_from_supplier($id_supplier);
+		}
+
+		//Seleciona todos os estados
+		$states_all = $model->Select_All('states');
+
+		//Envia os dados para a view
+		$dados['name_title'] = "Edit supplier | Controle de estoque";
+		$dados['supplier'] = $supplier;
+		$dados['data_supplier'] = $data_supplier;
+		$dados['state_supplier'] = $state_supplier;
+		$dados['states_all'] = $states_all;
+
+		$this->load_template('edit_supplier', $dados);
+	}
+	//Atualiza as informações de fornedores no banco
+	public function update() {
+		$model = new Model();
+		$supplier = new Supplier();
+
+		//Verifica se o id do fornecedor foi enviado para atualizar pelo id
+		if(!empty($_POST['id_supplier'])) {
+			//Pode alterar qualquer coluna
+			if(!empty($_POST['name']) || !empty($_POST['email']) ||!empty($_POST['phone']) || !empty($_POST['cnpj']) || !empty($_POST['address']) || !empty($_POST['number_address']) || !empty($_POST['neighborhood']) || !empty($_POST['city']) || !empty($_POST['id_state'])) {
+				$name = addslashes($_POST['name']);
+				$email = addslashes($_POST['email']);
+				$phone = addslashes($_POST['phone']);
+				$cnpj = addslashes($_POST['cnpj']);
+				$address = addslashes($_POST['address']);
+				$number_address = addslashes($_POST['number_address']);
+				$neighborhood = addslashes($_POST['neighborhood']);
+				$city = addslashes($_POST['city']);
+				$id_state = addslashes($_POST['id_state']);
+
+				//Atualiza as duas colunas no banco
+				$model->Update_With_Where('supplier', array(
+					'name' => $name,
+					'email' => $email,
+					'phone' => $phone,
+					'cnpj' => $cnpj,
+					'address' => $address,
+					'number_address' => $number_address,
+					'neighborhood' => $neighborhood,
+					'city' => $city,
+					'id_state' => $id_state
+				), array('id'=> $_POST['id_supplier']));
+				header('Location: '.BASE_URL.'/supplier');
+			}
 		}
 	}
 }

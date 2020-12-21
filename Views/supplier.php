@@ -41,20 +41,22 @@
 							</thead>
 							<tbody>
 								<?php if(!empty($all_supplier)): ?>
-									<?php foreach($all_supplier as $supplier): ?>
+									<?php foreach($all_supplier as $info_supplier): ?>
 										<tr>
-											<td><?php echo $supplier['name']; ?></td>
-											<td><?php echo $supplier['cnpj']; ?></td>
-											<td><?php echo $supplier['phone']; ?></td>
-											<td><?php echo $supplier['email']; ?></td>
-											<td><?php echo $supplier['city']; ?></td>
-											<td><?php echo $supplier['address']; ?></td>
-											<td><?php echo $supplier['neighborhood']; ?></td>
-											<td><?php echo $supplier['number_address']; ?></td>
-											<td><?php echo $state['name_state']; ?></td>
-											<td><form method="POST">
+											<td><?php echo $info_supplier['name']; ?></td>
+											<td><?php echo $info_supplier['cnpj']; ?></td>
+											<td><?php echo $info_supplier['phone']; ?></td>
+											<td><?php echo $info_supplier['email']; ?></td>
+											<td><?php echo $info_supplier['city']; ?></td>
+											<td><?php echo $info_supplier['address']; ?></td>
+											<td><?php echo $info_supplier['neighborhood']; ?></td>
+											<td><?php echo $info_supplier['number_address']; ?></td>
+											<td>
+												<?php echo $supplier->select_state_from_supplier($info_supplier['id_state']); ?>	
+											</td>
+											<td><form method="GET" action="<?php echo BASE_URL; ?>/supplier/edit/<?php echo $info_supplier['id']; ?>">
 													<!-- Button trigger modal editar -->
-													<button type="submit" formmethod="post" name="editar" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
+													<button type="input" formmethod="post" name="id" value="<?php echo $info_supplier['id']; ?>" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" title="Editar">
 												  		<i class="fa fa-edit"></i>
 													</button>
 												</form>
