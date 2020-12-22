@@ -32,7 +32,7 @@
 							</div>
 							<div class="form-row">
 							    <div class="custom-file col-md-6">
-									<input type="file" class="custom-file-input" id="customFile" name="img" required="required">
+									<input type="file" class="custom-file-input" id="customFile" name="img">
 									<label class="custom-file-label" for="customFile">Enviar imagem do produto</label>
 								</div>
 							</div><br/><br/>

@@ -89,4 +89,11 @@ class productsController extends Controller {
 			}
 		}	
 	}
+	//Deleta um produto que não esta vinculado a nenhuma outra tabela
+	public function delete() {
+		$model = new Model();
+
+		$model->Delete_With_Where('products', array('id' => $_POST['id_product']));
+		header('Location: '.BASE_URL.'/products');
+	}
 }

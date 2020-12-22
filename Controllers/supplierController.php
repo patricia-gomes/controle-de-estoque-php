@@ -123,4 +123,11 @@ class supplierController extends Controller {
 			}
 		}
 	}
+	//Deleta um fornecedor que não esta vinculado a nenhuma outra tabela
+	public function delete() {
+		$model = new Model();
+
+		$model->Delete_With_Where('supplier', array('id' => $_POST['id_supplier']));
+		header('Location: '.BASE_URL.'/supplier');
+	}
 }

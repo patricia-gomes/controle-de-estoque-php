@@ -12,4 +12,19 @@ class Supplier extends Model {
 			return $result['name_state'];
 		}
 	}
+	//Verifica no banco se um fornecedor esta relacionado a tabela entry
+	public function check_supplier($id_supplier) {
+		foreach($id_supplier as $value) { 
+			$query_verification = "SELECT entry.id_supplier, supplier.id FROM entry
+				INNER JOIN supplier ON supplier.id = entry.id_supplier
+				WHERE entry.id_supplier = $value";
+		}
+		$result = $this->pdo->query($query_verification);
+
+		if($result->rowCount() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

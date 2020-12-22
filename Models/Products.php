@@ -22,4 +22,20 @@ class Products extends Model {
 			return $path_img;
 		}
 	}
+
+	//Verifica no banco se um produto esta relacionado a tabela entry
+	public function check_product($id_product) {
+		foreach($id_product as $value) { 
+			$query_verification = "SELECT entry.id_product, products.id FROM entry
+				INNER JOIN products ON products.id = entry.id_product
+				WHERE entry.id_product = $value";
+		}
+		$result = $this->pdo->query($query_verification);
+
+		if($result->rowCount() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

@@ -85,14 +85,34 @@ class Model extends Config {
 
 	//Deleta um dado por vez com base no id em qualquer tabela
 	public function Delete_With_Where($table, $where) {
+		$product = new Products();
+		$supplier = new Supplier();
+
 		//Verifica se as variaveis nao estao vazias
-		if(!empty($table) && !empty($where)) { 
-			/*Query de exemplo: "DELETE FROM tabela WHERE id = 2"*/
-			$query = "DELETE FROM {$table} WHERE ";
-			foreach ($where as $coluna => $value) {
-				$query.="$coluna = {$value}";
+		if(!empty($table) && !empty($where)) {
+			/*Antes de apagar verifica se produto esta vinculado a tabela entry 
+			* se o produto estiver relacionado a entry ele tem de remover
+			* primeiro na tabela entry para depois apagar o produto
+			*/
+			if($table == 'supplier') {
+				if($supplier->check_supplier($where) == false) {
+					//Deleta o fornecedor que não esta vinculado a tabela entry
+					$query = "DELETE FROM {$table} WHERE ";
+					foreach ($where as $coluna => $value) {
+						$query.= "$coluna = {$value}";
+					}
+					$this->pdo->query($query);
+				}
+			} else if($table == 'products') {
+				if($product->check_product($where) == false) {
+					/* Deleta o produto que não esta vinculado a tabela entry */
+					$query = "DELETE FROM {$table} WHERE ";
+					foreach ($where as $coluna => $value) {
+						$query.= "$coluna = {$value}";
+					}
+					$this->pdo->query($query);
+				}
 			}
-			$this->pdo->query($query);
 		}
 	}
 } 

@@ -45,9 +45,9 @@
 												</button>
 											</form>
 										</td>
-										<td><form method="POST">
+										<td><form method="POST" action="<?php echo BASE_URL; ?>/products/delete">
 												<!-- Button trigger modal excluir -->
-												<button type="submit" formmethod="post" name="excluir" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
+												<button type="input" formmethod="post" name="id_product" value="<?php echo $product['id']; ?>" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
 											  		<i class="fa fa-trash-o"></i>
 												</button>
 											</form>
