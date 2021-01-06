@@ -23,39 +23,27 @@
 							<table class="table table-bordered table-striped table-hover table-sm">
 								<thead class="thead-light">
 									<tr>
-										<th>Fornecedor</th>
 										<th>Produto</th>
+										<th>Fornecedor</th>
 										<th>Data</th>
-										<th>Quant</th>
 										<th>Preço</th>
+										<th>Quant</th>
 										<th>Valor total</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Hugo Barto</td>
-										<td>Caneta Bic Preta</td>
-										<td>10/12/20</td>
-										<td>30</td>
-										<td>R$1,25</td>
-										<td>R$58,75</td>
-									</tr>
-									<tr>
-										<td>Laura Toledo</td>
-										<td>Caneta Nankin</td>
-										<td>11/12/20</td>
-										<td>10</td>
-										<td>R$10,25</td>
-										<td>R$102,50</td>
-									</tr>
-									<tr>
-										<td>Hugo Barto</td>
-										<td>Caneta Bic Azul</td>
-										<td>10/12/20</td>
-										<td>30</td>
-										<td>R$1,25</td>
-										<td>R$58,75</td>
-									</tr>
+									<?php if(!empty($all_entry)): ?>
+										<?php foreach($all_entry as $info): ?>
+											<tr>
+												<td><?php echo $info['name_product']; ?></td>
+												<td><?php echo $info['name_supplier']; ?></td>
+												<td><?php echo $info['date_time']; ?></td>
+												<td><?php echo $helper->replace_point_in_comma($info['value_product']); ?></td>
+												<td><?php echo $info['quant_product']; ?></td>
+												<td><?php echo $helper->replace_point_in_comma($info['value_total']); ?></td>
+											</tr>
+										<?php endforeach; ?>
+									<?php endif; ?>
 								</tbody>
 							</table>
 						</div>
@@ -74,11 +62,11 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>3</td>
-									<td>70</td>
-									<td>R$220,00</td>
-								</tr>
+										<tr>
+											<td><?php echo $itens_total; ?></td>
+											<td><?php echo $quant_total; ?></td>
+											<td><?php echo $value_total; ?></td>
+										</tr>
 							</tbody>
 						</table>
 					</div>

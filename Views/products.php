@@ -30,6 +30,7 @@
 									<th>Preço</th>
 									<th>Editar</th>
 									<th>Deletar</th>
+									<th>Estoque</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -49,6 +50,14 @@
 												<!-- Button trigger modal excluir -->
 												<button type="input" formmethod="post" name="id_product" value="<?php echo $product['id']; ?>" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
 											  		<i class="fa fa-trash-o"></i>
+												</button>
+											</form>
+										</td>
+										<td>
+											<form method="POST" action="<?php echo BASE_URL; ?>/stock/index">
+												<!-- Button trigger modal editar -->
+												<button type="input" formmethod="post" name="id" value="<?php echo $product['id']; ?>"  class="btn btn-success" data-toggle="modal" data-target="#editar" title="Estoque">
+											  		<img src="<?php echo BASE_URL; ?>/assets/images/stock.png" alt="">
 												</button>
 											</form>
 										</td>
