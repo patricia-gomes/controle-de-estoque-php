@@ -38,4 +38,13 @@ class Products extends Model {
 			return false;
 		}
 	}
+
+	public function sum_value_total($table, $col_name) {
+		$query = "SELECT {$col_name} FROM {$table}";
+		$query = $this->pdo->query($query);
+
+		if($query->rowCount() > 0) {
+			return $query->fetchAll(\PDO::FETCH_ASSOC);
+		}
+	}
 }
