@@ -22,8 +22,19 @@ class Model extends Config {
 		$query = $this->pdo->query($query);
 		//Verifica se retornou algum dado do banco antes de armazenar na propriedade $result
 		if($query->rowCount() > 0) {
-			$result = $query->fetchAll(\PDO::FETCH_ASSOC);
-			return $result;
+			return $query->fetchAll(\PDO::FETCH_ASSOC);
+		}
+	}
+	//Retorna a quantidade de registros tem uma tabela
+	public function rowCount($table) {
+		$sql = "SELECT count(id) as qt FROM {$table}";
+		$sql = $this->pdo->query($sql);
+
+		if($sql->rowCount() > 0) {
+			$quant = $sql->fetch();
+			return $quant['qt'];
+		} else {
+			return 0;
 		}
 	}
 
@@ -48,7 +59,6 @@ class Model extends Config {
 	//Insere em qualquer tabela e em qualquer quantidade de coluna tiver essa tabela
 	public function Insert($table, $colunas = array()) {
 		$dados = array();
-
 		//Perconrendo o array das colunas para pegar as colunas da tabela
 		foreach($colunas as $coluna => $value) {
 			$dados[] = "$coluna";
@@ -56,6 +66,7 @@ class Model extends Config {
 		}
 		/*Montando a query ("INSERT INTO table (coluna1, coluna2) VALUES (:coluna1, :coluna2)") */
 		$query = $this->pdo->prepare("INSERT INTO {$table} (".implode(', ', $dados).") VALUES (".implode(', ', $dados2).")");
+
 		/*Percorre o array das colunas para vincular o valor a coluna*/
 		foreach($colunas as $coluna => $value) {
 			$query->bindValue(":$coluna", "$value");
