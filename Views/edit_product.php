@@ -35,7 +35,7 @@
 									<?php if(empty($product['url_img_product'])): ?>
 										<img src="<?php echo BASE_URL; ?>/assets/images/box.png">
 									<?php else: ?>
-										<img src="<?php echo BASE_URL.'/'.$product['url_img_product']; ?>">
+										<img src="<?php echo BASE_URL.'/'.$product['url_img_product']; ?>" width="240" height="240">
 									<?php endif; ?>
 								</div>
 								<div class="form-row">

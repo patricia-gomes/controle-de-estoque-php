@@ -22,14 +22,24 @@ class Products extends Model {
 			return $path_img;
 		}
 	}
+	//Retorna apenas o resultado de uma coluna de qualquer tabela
+	public function sum_value_total($table, $col_name) {
+		$query = "SELECT {$col_name} FROM {$table}";
+		$query = $this->pdo->query($query);
+
+		if($query->rowCount() > 0) {
+			return $query->fetchAll(\PDO::FETCH_ASSOC);
+		}
+	}
 
 	//Verifica no banco se um produto esta relacionado a tabela entry
-	public function check_product($id_product) {
-		foreach($id_product as $value) { 
+	public function check_product_in_entry($id_product) {
+
+		//foreach($id_product as $value) {
 			$query_verification = "SELECT entry.id_product, products.id FROM entry
-				INNER JOIN products ON products.id = entry.id_product
-				WHERE entry.id_product = $value";
-		}
+			INNER JOIN products ON products.id = entry.id_product
+			WHERE entry.id_product = $id_product";
+		//}
 		$result = $this->pdo->query($query_verification);
 
 		if($result->rowCount() > 0) {
@@ -39,12 +49,20 @@ class Products extends Model {
 		}
 	}
 
-	public function sum_value_total($table, $col_name) {
-		$query = "SELECT {$col_name} FROM {$table}";
-		$query = $this->pdo->query($query);
+	//Verifica no banco se um produto esta relacionado a tabela exits
+	public function check_product_in_exits($id_product) {
 
-		if($query->rowCount() > 0) {
-			return $query->fetchAll(\PDO::FETCH_ASSOC);
+		//foreach($id_product as $value) {
+			$query_verification = "SELECT exits.id_product, products.id FROM exits
+			INNER JOIN products ON products.id = exits.id_product
+			WHERE exits.id_product = $id_product";
+		//}
+		$result = $this->pdo->query($query_verification);
+
+		if($result->rowCount() > 0) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

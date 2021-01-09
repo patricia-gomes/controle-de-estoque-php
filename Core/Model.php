@@ -94,20 +94,25 @@ class Model extends Config {
 		}
 	}
 
-	//Deleta um dado por vez com base no id em qualquer tabela
+	/* ----Deleta um dado por vez com base no id em qualquer tabela----
+	* Antes de apagar verifica se produto esta vinculado a uma das
+	* duas tabelas: entry e exits. 
+	* Se o produto estiver relacionado a uma delas o mysql impede de apaga-las,
+	* por causa da chave estrangeira. Então, devemos remover primeiro os registros que tem o
+	* id do produto em uma das 3 tabelas para depois apagar o produto.
+	* A mesma coisa com fornecedor(supplier) para apaga-lo verifico se tem algum registro com 
+	* o id dele vinculado a tabela entry.
+	*/
 	public function Delete_With_Where($table, $where) {
 		$product = new Products();
 		$supplier = new Supplier();
 
 		//Verifica se as variaveis nao estao vazias
 		if(!empty($table) && !empty($where)) {
-			/*Antes de apagar verifica se produto esta vinculado a tabela entry 
-			* se o produto estiver relacionado a entry ele tem de remover
-			* primeiro na tabela entry para depois apagar o produto
-			*/
+
 			if($table == 'supplier') {
 				if($supplier->check_supplier($where) == false) {
-					//Deleta o fornecedor que não esta vinculado a tabela entry
+					//Deleta o fornecedor que não esta vinculado a tabela supplier
 					$query = "DELETE FROM {$table} WHERE ";
 					foreach ($where as $coluna => $value) {
 						$query.= "$coluna = {$value}";
@@ -115,8 +120,16 @@ class Model extends Config {
 					$this->pdo->query($query);
 				}
 			} else if($table == 'products') {
+					/* Deleta o produto que não esta vinculado a tabela products */
+					$query = "DELETE FROM {$table} WHERE ";
+					foreach ($where as $coluna => $value) {
+						$query.= "$coluna = {$value}";
+					}
+					$this->pdo->query($query);
+				
+			} else if($table == 'exits') {
 				if($product->check_product($where) == false) {
-					/* Deleta o produto que não esta vinculado a tabela entry */
+					/* Deleta o produto que não esta vinculado a tabela exits */
 					$query = "DELETE FROM {$table} WHERE ";
 					foreach ($where as $coluna => $value) {
 						$query.= "$coluna = {$value}";

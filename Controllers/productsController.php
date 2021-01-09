@@ -92,8 +92,23 @@ class productsController extends Controller {
 	//Deleta um produto que não esta vinculado a nenhuma outra tabela
 	public function delete() {
 		$model = new Model();
+		$product = new Products();
 
-		$model->Delete_With_Where('products', array('id' => $_POST['id_product']));
-		header('Location: '.BASE_URL.'/products');
+		$check_product_entry = $product->check_product_in_entry($_POST['id_product']);
+		$check_product_exits = $product->check_product_in_exits($_POST['id_product']);
+		/*
+		echo "Check de entry: $check_product_entry <br/>";
+		echo "Check de extis: $check_product_exits <br/>";exit; */
+		//Antes de remover tem de verificar se produto esta vinculado a outra tabela
+		if($check_product_entry == 1) {
+			header('Location: '.BASE_URL.'/products');
+
+		} else if( $check_product_exits == 1) {
+			header('Location: '.BASE_URL.'/products');
+
+		} else {
+			$model->Delete_With_Where('products', array('id' => $_POST['id_product']));
+			header('Location: '.BASE_URL.'/products');
+		}
 	}
 }
