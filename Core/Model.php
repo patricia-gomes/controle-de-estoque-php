@@ -119,7 +119,7 @@ class Model extends Config {
 					}
 					$this->pdo->query($query);
 				}
-			} else if($table == 'products') {
+			} else if($table == 'products' || $table == 'entry') {
 					/* Deleta o produto que não esta vinculado a tabela products */
 					$query = "DELETE FROM {$table} WHERE ";
 					foreach ($where as $coluna => $value) {

@@ -18,17 +18,19 @@
 				<!-- ./ Row form busca e menu button -->
 				<!-- Tabela -->
 				<div class="row">
-					<div class="col-8">
+					<div class="col-9">
 						<div class="table_overflow" class="table-responsive">
 							<table class="table table-bordered table-striped table-hover table-sm">
 								<thead class="thead-light">
 									<tr>
 										<th>Produto</th>
 										<th>Fornecedor</th>
-										<th>Data</th>
+										<th>Data entrada</th>
 										<th>Preço</th>
 										<th>Quant</th>
 										<th>Valor total</th>
+										<th>Validade</th>
+										<th>Saída</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -38,9 +40,18 @@
 												<td><?php echo $info['name_product']; ?></td>
 												<td><?php echo $info['name_supplier']; ?></td>
 												<td><?php echo $info['date_time']; ?></td>
-												<td><?php echo $helper->replace_point_in_comma($info['value_product']); ?></td>
+												<td><?php echo "R$ ".$helper->replace_point_in_comma($info['value_product']); ?></td>
 												<td><?php echo $info['quant_product']; ?></td>
-												<td><?php echo $helper->replace_point_in_comma($info['value_total']); ?></td>
+												<td><?php echo "R$ ".$helper->replace_point_in_comma($info['value_total']); ?></td>
+												<td><?php echo $info['expirion_date']; ?></td>	
+												<td>
+													<form method="POST" action="<?php echo BASE_URL; ?>/exit/insert">
+														<!-- Button Saída -->
+														<button type="input" formmethod="post" name="id" value="<?php echo $info['id']; ?>" class="btn btn-primary" data-toggle="modal" data-target="#editar" title="Saída de estoque">
+													  		<img src="<?php echo BASE_URL; ?>/assets/images/exit-stock.png" width="24" height="24" alt="imagem do botão de icone de saída de Estoque">
+														</button>
+													</form>
+												</td>
 											</tr>
 										<?php endforeach; ?>
 									<?php endif; ?>
@@ -62,11 +73,11 @@
 								</tr>
 							</thead>
 							<tbody>
-										<tr>
-											<td><?php echo $itens_total; ?></td>
-											<td><?php echo $quant_total; ?></td>
-											<td><?php echo $value_total; ?></td>
-										</tr>
+								<tr>
+									<td><?php echo $itens_total; ?></td>
+									<td><?php echo $quant_total; ?></td>
+									<td><?php echo $helper->replace_point_in_comma($value_total); ?></td>
+								</tr>
 							</tbody>
 						</table>
 					</div>

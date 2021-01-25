@@ -77,7 +77,7 @@ class productsController extends Controller {
 				$model->Update_With_Where('products', array(
 					'name' => $_POST['name'],
 					'value_medium' => $value
-				), array('id' => $_POST['id_product']));
+				), array('id' => $_POST['id_product']) );
 				header('Location: '.BASE_URL.'/products');
 			}
 			//Altera a imagem
@@ -96,10 +96,8 @@ class productsController extends Controller {
 
 		$check_product_entry = $product->check_product_in_entry($_POST['id_product']);
 		$check_product_exits = $product->check_product_in_exits($_POST['id_product']);
-		/*
-		echo "Check de entry: $check_product_entry <br/>";
-		echo "Check de extis: $check_product_exits <br/>";exit; */
-		//Antes de remover tem de verificar se produto esta vinculado a outra tabela
+
+		/*Antes de remover tem de verificar se produto esta vinculado a outra tabela, se retornar 1 é porque o produto tem um registro em outra tabela */
 		if($check_product_entry == 1) {
 			header('Location: '.BASE_URL.'/products');
 
