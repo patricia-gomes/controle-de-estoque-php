@@ -3,12 +3,29 @@ class dashboardController extends Controller {
 
 	public function index() {
 		$model = new Model();
+		$product = new Products();
+		$stock = new Stock();
+		$helper = new Helper();
 
 		//Verificando se fez o login caso contrario redireciona para login
 		if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin'])) { 
 			header("Location: ".BASE_URL."/login");
 		}
+
+		$all_entry = $model->Select_All('entry');
+
+		//Verifica em Entry se há algum produto com a quantidade igual ou menor que 5
+		$low_stock = $stock->low_stock($all_entry);
+
+		//Verifica se a quantidade é igual a zero para deletar
+		$stock->quant_product_equal_zero($low_stock);
+
+		//Envia os dados para a view
 		$dados['name_title'] = "Controle de estoque | Patricia Gomes";
+		$dados['helper'] = $helper;
+		//$dados['quant_equal_zero'] = $quant_equal_zero;
+		$dados['low_stock'] = $low_stock;
+		$dados['all_entry'] = $all_entry;
 
 		$this->load_template('panel', $dados);
 	}

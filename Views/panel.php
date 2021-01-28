@@ -6,11 +6,15 @@
 						<div class="alert_panel">
 							<div class="alert_panel_title">Estoque em baixa</div>
 							<div class="alert_panel_content">
-								<ul>
-									<li>Conteudo 1</li>
-									<li>Conteudo 2</li>
-									<li>Conteudo 3</li>
-								</ul>
+								<?php if(!empty($low_stock)): ?>
+									<ul>
+									<?php foreach($low_stock as $low): ?>
+										<li><?php echo $low['name_product']." (".$low['quant_product'],")"; ?></li>
+									<?php endforeach; ?>
+								<?php else: ?>
+										<li>Nenhum produto a baixo do estoque!</li>
+									</ul>
+								<?php endif; ?>
 							</div>
 						</div>
 						<!---->
@@ -37,21 +41,20 @@
 								<thead class="thead-light">
 									<tr>
 										<th>Produto</th>
-										<th>Preço</th>
 										<th>Estoque</th>
+										<th>Preço</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td><a href="<?php echo BASE_URL; ?>/exit/remove">Caneta Bic Preta</a></td>
-										<td>R$ 1,25</td>
-										<td>11</td>
-									</tr>
-									<tr>
-										<td><a href="<?php echo BASE_URL; ?>/exit/remove">Caneta Nankin</a></td>
-										<td>R$ 10,25</td>
-										<td>5</td>
-									</tr>
+									<?php if(!empty($all_entry)): ?>
+										<?php foreach($all_entry as $info): ?>
+											<tr>
+												<td><?php  echo $info['name_product']; ?></td>
+												<td><?php echo $info['quant_product']; ?></td>
+												<td><?php  echo "R$ ".number_format($info['value_product'], 2, ',', '.'); ?></td>
+											</tr>
+										<?php endforeach; ?>
+									<?php endif; ?>
 								</tbody>
 							</table>
 						</div>
