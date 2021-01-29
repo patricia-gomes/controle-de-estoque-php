@@ -1,7 +1,7 @@
 <?php
 class Stock extends Model {
 
-
+	//Retorna os produtos com estoque baixo
 	public function low_stock($all_entry) {
 		if(!empty($all_entry)) {
 
@@ -23,6 +23,24 @@ class Stock extends Model {
 				$model->Delete_With_Where('entry', array('id'=> $value['id']));
 			} else { return false; }
 		}
+	}
+	//Retorna os produtos que vão para a lista validade esgotando
+	public function validity_running_out($all_entry) {
+		$dados = array();
+		foreach ($all_entry as $key => $value) {
+			/*A classe DateTime para calcular a diferença entre a data de validade e a data atual */
+			$current_date  = new DateTime( date('Y-m-d') );
+			$expirion_date = new DateTime($value['expirion_date']);
+			//Método diff retorna o intervalo entre a data atual e a da validade
+			$interval  = $current_date->diff($expirion_date);
+
+			/*Verifica quais os produtos que falta 7 dias ou menos para vencer a validade */
+			if($interval->d <= 7) {
+				$dados[$key]['name_product'] =  $value['name_product'];
+				$dados[$key]['quant_days'] = $interval->d;
+			}
+		}
+		return $dados;
 	}
 
 }

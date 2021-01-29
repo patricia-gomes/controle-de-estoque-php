@@ -11,7 +11,7 @@ class dashboardController extends Controller {
 		if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin'])) { 
 			header("Location: ".BASE_URL."/login");
 		}
-
+		//--------------------------------------------------------------------------
 		$all_entry = $model->Select_All('entry');
 
 		//Verifica em Entry se há algum produto com a quantidade igual ou menor que 5
@@ -20,11 +20,14 @@ class dashboardController extends Controller {
 		//Verifica se a quantidade é igual a zero para deletar
 		$stock->quant_product_equal_zero($low_stock);
 
+		//Verificando quais produtos estão perto de vencer a validade
+		$winning_products  = $stock->validity_running_out($all_entry);
+
 		//Envia os dados para a view
 		$dados['name_title'] = "Controle de estoque | Patricia Gomes";
 		$dados['helper'] = $helper;
-		//$dados['quant_equal_zero'] = $quant_equal_zero;
 		$dados['low_stock'] = $low_stock;
+		$dados['winning_products'] = $winning_products;	
 		$dados['all_entry'] = $all_entry;
 
 		$this->load_template('panel', $dados);

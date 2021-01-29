@@ -7,13 +7,13 @@
 							<div class="alert_panel_title">Estoque em baixa</div>
 							<div class="alert_panel_content">
 								<?php if(!empty($low_stock)): ?>
-									<ul>
-									<?php foreach($low_stock as $low): ?>
-										<li><?php echo $low['name_product']." (".$low['quant_product'],")"; ?></li>
-									<?php endforeach; ?>
+									<ul><?php foreach($low_stock as $low): ?>
+										<li>
+											<?php echo $low['name_product']." (".$low['quant_product'],")"; ?>
+										</li>
+									<?php endforeach; ?></ul>
 								<?php else: ?>
-										<li>Nenhum produto a baixo do estoque!</li>
-									</ul>
+									<ul><li>Nenhum produto a baixo do estoque!</li></ul>
 								<?php endif; ?>
 							</div>
 						</div>
@@ -24,10 +24,21 @@
 						<div class="alert_panel">
 							<div class="alert_panel_title">Validade esgotando</div>
 							<div class="alert_panel_content">
-								<ul>
-									<li>Conteudo 1</li>
-									<li>Conteudo 2</li>
-								</ul>
+								<?php if(!empty($winning_products)): ?>
+								<ul><?php foreach($winning_products as $expirion_date): ?>
+
+									<?php if($expirion_date['quant_days'] == 0): ?>
+										<li>
+										<?php echo $expirion_date['name_product']." (hoje)"; ?>	
+										</li>
+									<?php else: ?>
+										<li><?php echo $expirion_date['name_product']." (".$expirion_date['quant_days']." dias)"; ?></li>
+									<?php endif; ?>
+									
+								<?php endforeach; ?></ul>
+								<?php else: ?>
+									<ul><li>Nenhum produto com a validade esgotando!</li></ul>
+								<?php endif; ?>
 							</div>
 						</div>
 						<!---->
