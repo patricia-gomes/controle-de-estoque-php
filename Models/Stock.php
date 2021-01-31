@@ -18,8 +18,10 @@ class Stock extends Model {
 
 	public function quant_product_equal_zero($low_stock) {
 		$model = new Model();
-		foreach ($low_stock as $key => $value) {
-			if($value['quant_product'] == 0) {
+
+		foreach ($low_stock as $value) {
+			//Se a quantidade do produto estiver vazio deleta
+			if(empty($value['quant_product'])) {
 				$model->Delete_With_Where('entry', array('id'=> $value['id']));
 			} else { return false; }
 		}
