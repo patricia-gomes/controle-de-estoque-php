@@ -35,4 +35,21 @@ class entryController extends Controller {
 
 		$this->load_template('entry', $dados);
 	}
+
+	public function search() {
+		$fetch = new Search_form();
+		$helper = new Helper();
+		$result = array();
+
+		$search = $_POST['search'];
+		//Busca
+		$result = $fetch->search('entry', 'name_product', 'name_supplier', $search);
+		
+		//Envia os dados para a view
+		$dados['name_title'] = " | Controle de estoque";
+		$dados['helper'] = $helper;
+		$dados['result'] = $result;
+
+		$this->load_template('search_entry', $dados);
+	}
 }

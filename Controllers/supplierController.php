@@ -8,14 +8,10 @@ class supplierController extends Controller {
 		//Seleciona todos os fornecedores
 		$all_supplier = $model->Select_All('supplier');
 
-		//Retorna o estado do fornecedor
-	//	$state_supplier = ;
-
 		//Envia os dados para a view
 		$dados['name_title'] = "Supplier | Controle de Estoque";
 		$dados['supplier'] = $supplier;
 		$dados['all_supplier'] = $all_supplier;
-	//	$dados['state_supplier'] = $state_supplier;
 
 		$this->load_template('supplier', $dados);
 	}
@@ -32,6 +28,26 @@ class supplierController extends Controller {
 
 		$this->load_template('insert_supplier', $dados);
 	}
+
+	public function search() {
+		$fetch = new Search_form();
+		$helper = new Helper();
+		$supplier = new Supplier();
+		$result = array();
+
+		$search = $_POST['search'];
+		//Busca
+		$result = $fetch->search('supplier', 'name', 'city', $search);
+
+		//Envia os dados para a view
+		$dados['name_title'] = "$search | Controle de estoque";
+		$dados['helper'] = $helper;
+		$dados['supplier'] = $supplier;
+		$dados['result'] = $result;
+
+		$this->load_template('search_supplier', $dados);
+	}
+
 	//Insere os dados de fornecedor (supplier) no banco
 	public function register() {
 		$model = new Model();

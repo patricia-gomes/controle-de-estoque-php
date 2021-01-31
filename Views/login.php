@@ -12,18 +12,25 @@
 <body>
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-4">
+			<img class="mb-4" src="<?php echo BASE_URL; ?>/assets/images/logo.png" width="64" height="64">
+		</div>
+		<div class="row justify-content-center">
+			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-3">
 				<form method="POST" action="<?php echo BASE_URL; ?>/login/index" class="form-signin">
-					 <img class="mb-4" src="<?php echo BASE_URL; ?>/assets/images/logo.png" width="64" height="64">
-					<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
 					<label for="inputUser" class="sr-only">User</label>
-					  	<input type="text" name="user" id="inputEmail" class="form-control" placeholder="User" required autofocus>
+					  	<input type="text" name="user" id="inputEmail" class="form-control" placeholder="User" required autofocus><br/>
 					<label for="inputPassword" name="password" class="sr-only">Password</label>
-					  	<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+					  	<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required><br/>
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-					  	<p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
 				</form>
 			</div>
+		</div>
+		<div class="row justify-content-center">
+			<p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
 		</div>
 	</div>
 

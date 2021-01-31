@@ -39,6 +39,25 @@ class exitController extends Controller {
 		$this->load_template('exit_form', $dados);
 	}
 
+	public function search() {
+		$model = new Model();
+		$product = new Products();
+		$fetch = new Search_form();
+		$helper = new Helper();
+		$result = array();
+
+		$search = $_POST['search'];
+		//Busca pelo nome ou valor do produto
+		$result = $fetch->search('exits', 'name_product', 'value_product', $search);
+
+		//Envia os dados para a view
+		$dados['name_title'] = " | Controle de estoque";
+		$dados['helper'] = $helper;
+		$dados['result'] = $result;
+
+		$this->load_template('search_exits', $dados);
+	}
+
 	public function register() {
 		$model = new Model;
 

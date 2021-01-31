@@ -44,6 +44,23 @@ class productsController extends Controller {
 		}
 	}
 
+	public function search() {
+		$fetch = new Search_form();
+		$helper = new Helper();
+		$result = array();
+
+		$search = $_POST['search'];
+		//Busca
+		$result = $fetch->search('products', 'name', 'value_medium', $search);
+
+		//Envia os dados para a view
+		$dados['name_title'] = "$search | Controle de estoque";
+		$dados['helper'] = $helper;
+		$dados['result'] = $result;
+
+		$this->load_template('search_products', $dados);
+	}
+
 	public function edit($id) {
 		$model = new Model;
 		$helper = new Helper();

@@ -41,8 +41,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php if(!empty($all_supplier)): ?>
-									<?php foreach($all_supplier as $info_supplier): ?>
+								<?php if(!empty($result)): ?>
+									<?php foreach($result as $info_supplier): ?>
 										<tr>
 											<td><?php echo $info_supplier['name']; ?></td>
 											<td><?php echo $info_supplier['cnpj']; ?></td>

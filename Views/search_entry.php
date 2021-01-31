@@ -1,7 +1,7 @@
 			<div class="col-10 content">
 				<!--- Row form busca e menu button--->
 				<div class="row serach_button">
-					<div class="col-4">		
+					<div class="col-4">			
 						<form method="POST" action="<?php echo BASE_URL; ?>/entry/search">
 							<div class="input-group">
 							    <input type="text" class="form-control" name="search" placeholder="Buscar produto e fornecedor">
@@ -34,8 +34,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php if(!empty($all_entry)): ?>
-										<?php foreach($all_entry as $info): ?>
+									<?php if(!empty($result)): ?>
+										<?php foreach($result as $info): ?>
 											<tr>
 												<td><?php echo $info['name_product']; ?></td>
 												<td><?php echo $info['name_supplier']; ?></td>
@@ -61,27 +61,5 @@
 					</div>
 				</div>
 				<!-- ./Tabela -->
-				<!--- 2ºTabela -->
-				<div class="row">
-					<div class="col-5">
-						<table class="table table-bordered table-striped table-sm">
-							<thead class="thead-black">
-								<tr>
-									<th>Itens</th>
-									<th>Quant total</th>
-									<th>Valor total</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><?php echo $itens_total; ?></td>
-									<td><?php echo $quant_total; ?></td>
-									<td><?php echo $helper->replace_point_in_comma($value_total); ?></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<!--- ./2ºTabela -->
 			</div>
 		</div>

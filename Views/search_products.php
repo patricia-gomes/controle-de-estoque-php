@@ -1,7 +1,7 @@
 			<div class="col-10 content">
 				<!--- Row form busca e menu button--->
 				<div class="row serach_button">
-					<div class="col-4">						
+					<div class="col-4">			
 						<form method="POST" action="<?php echo BASE_URL; ?>/products/search">
 							<div class="input-group">
 							    <input type="text" name="search" class="form-control" placeholder="Pesquisar...">
@@ -34,8 +34,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php if(!empty($all_products)): ?>
-									<?php foreach($all_products as $product): ?>
+								<?php if(!empty($result)): ?>
+									<?php foreach($result as $product): ?>
 									<tr>
 										<td><?php echo $product['name']; ?></td>
 										<td><?php echo "R$ ".$helper->replace_point_in_comma($product['value_medium']); ?></td>

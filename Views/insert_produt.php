@@ -1,24 +1,8 @@
 			<div class="col-10 content">
-				<!--- Row form busca e menu button--->
-				<div class="row serach_button">
-					<div class="col-4">
-						
-						<form>
-							<div class="input-group">
-							    <input type="search" class="form-control" placeholder="Pesquisar produto">
-							    <div class="input-group-append">
-							        <button class="btn btn-secondary" type="submit">
-							            <i class="fa fa-search"></i>
-							        </button>
-							    </div>
-							</div>
-						</form>
-					</div><br/><br/>
-				</div>
-				<!-- ./ Row form busca e menu button -->
 				<!-- Row form insert -->
 				<div class="row panel">
 					<div class="col-6">
+						<h3>Inserir produto</h3>
 						<form method="POST" action="<?php echo BASE_URL; ?>/products/register" enctype="multipart/form-data">
 							<div class="form-row">
 								<div class="form-group col-md-6">
