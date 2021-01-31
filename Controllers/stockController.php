@@ -8,6 +8,12 @@ class stockController extends Controller {
 		$info_product = array();
 		$info_supplier = array();
 
+		//Verificando se fez o login caso contrario redireciona para login
+		if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin'])) { 
+			header("Location: ".BASE_URL."/login");
+		}
+		//--------------------------------------------------------------------------
+
 		//Se o id do produto for enviado, seleciona pelo id
 		if(!empty($_POST['id'])) {
 			$info_product_with_id = $model->Select_With_Where('products', array('id'=>$_POST['id']));

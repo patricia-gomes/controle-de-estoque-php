@@ -6,6 +6,12 @@ class productsController extends Controller {
 		$model = new Model;
 		$helper = new Helper();
 
+		//Verificando se fez o login caso contrario redireciona para login
+		if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin'])) { 
+			header("Location: ".BASE_URL."/login");
+		}
+		//--------------------------------------------------------------------------
+
 		//Selecionar todos os produtos
 		$all_products = $model->Select_All('products');
 

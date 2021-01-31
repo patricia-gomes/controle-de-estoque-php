@@ -29,6 +29,7 @@ class Stock extends Model {
 		$dados = array();
 		foreach ($all_entry as $key => $value) {
 			/*A classe DateTime para calcular a diferença entre a data de validade e a data atual */
+			date_default_timezone_set('America/Porto_Velho');
 			$current_date  = new DateTime( date('Y-m-d') );
 			$expirion_date = new DateTime($value['expirion_date']);
 			//Método diff retorna o intervalo entre a data atual e a da validade

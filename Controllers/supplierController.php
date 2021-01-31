@@ -5,6 +5,12 @@ class supplierController extends Controller {
 		$model = new Model();
 		$supplier = new Supplier();
 
+		//Verificando se fez o login caso contrario redireciona para login
+		if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin'])) { 
+			header("Location: ".BASE_URL."/login");
+		}
+		//--------------------------------------------------------------------------
+
 		//Seleciona todos os fornecedores
 		$all_supplier = $model->Select_All('supplier');
 

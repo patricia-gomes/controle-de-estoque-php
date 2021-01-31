@@ -6,6 +6,12 @@ class exitController extends Controller {
 		$helper = new Helper();
 		$product = new Products();
 
+		//Verificando se fez o login caso contrario redireciona para login
+		if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin'])) { 
+			header("Location: ".BASE_URL."/login");
+		}
+		//--------------------------------------------------------------------------
+
 		$all_dados = $model->Select_All('exits');
 		$itens_total = $model->rowCount('exits');
 		$quant_total = $helper->sum_quant_total($all_dados, 'quant_exit');

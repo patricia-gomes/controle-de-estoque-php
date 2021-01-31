@@ -6,7 +6,12 @@ class entryController extends Controller {
 		$helper = new Helper();
 		$entry = new Entry();
 		$product = new Products();
-		//--------------------------------------------------
+		
+		//Verificando se fez o login caso contrario redireciona para login
+		if(!isset($_SESSION['loggedin']) || empty($_SESSION['loggedin'])) { 
+			header("Location: ".BASE_URL."/login");
+		}
+		//--------------------------------------------------------------------------
 		$all_entry = $model->Select_All('entry');
 		
 		$quant_total = $helper->sum_quant_total($all_entry, 'quant_product');
