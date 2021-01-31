@@ -27,20 +27,25 @@ class Stock extends Model {
 	//Retorna os produtos que vão para a lista validade esgotando
 	public function validity_running_out($all_entry) {
 		$dados = array();
-		foreach ($all_entry as $key => $value) {
-			/*A classe DateTime para calcular a diferença entre a data de validade e a data atual */
-			date_default_timezone_set('America/Porto_Velho');
-			$current_date  = new DateTime( date('Y-m-d') );
-			$expirion_date = new DateTime($value['expirion_date']);
-			//Método diff retorna o intervalo entre a data atual e a da validade
-			$interval  = $current_date->diff($expirion_date);
+		if(!empty($all_entry)) {
+			foreach ($all_entry as $key => $value) {
+				/*A classe DateTime para calcular a diferença entre a data de validade e a data atual */
+				date_default_timezone_set('America/Porto_Velho');
+				//Verifica se o produto tem data de validade
+				if(!empty($value['expirion_date'])) {
+					$current_date  = new DateTime( date('Y-m-d') );
+					$expirion_date = new DateTime($value['expirion_date']);
+					//Método diff retorna o intervalo entre a data atual e a da validade
+					$interval  = $current_date->diff($expirion_date);
 
-			/*Verifica quais os produtos que falta 7 dias ou menos para vencer a validade */
-			if($interval->d <= 7) {
-				/*Monta o array com as informaçães que queremos */
-				$dados[$key]['name_product'] =  $value['name_product'];
-				$dados[$key]['quant_days'] = $interval->d;
-				$dados[$key]['expirion_date'] = $value['expirion_date'];
+					/*Verifica quais os produtos que falta 7 dias ou menos para vencer a validade */
+					if($interval->d <= 7) {
+						/*Monta o array com as informaçães que queremos */
+						$dados[$key]['name_product'] =  $value['name_product'];
+						$dados[$key]['quant_days'] = $interval->d;
+						$dados[$key]['expirion_date'] = $value['expirion_date'];
+					}
+				}
 			}
 		}
 		return $dados;
