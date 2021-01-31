@@ -22,22 +22,23 @@
 					<div class="col-4">
 						<!---Painel de alerta 2--->
 						<div class="alert_panel">
-							<div class="alert_panel_title">Validade esgotando</div>
+							<div class="alert_panel_title">Validade vencendo</div>
 							<div class="alert_panel_content">
 								<?php if(!empty($winning_products)): ?>
 								<ul><?php foreach($winning_products as $expirion_date): ?>
 
+									<?php date_default_timezone_set('America/Porto_Velho'); ?>
 									<?php if($expirion_date['quant_days'] == 0): ?>
 										<li>
-										<?php echo $expirion_date['name_product']." (hoje)"; ?>	
-										</li>
+										<?php echo $expirion_date['name_product']." (vence hoje)"; ?></li>
+									<?php elseif($expirion_date['expirion_date'] < date('Y-m-d')): ?>
+										<li><?php echo $expirion_date['name_product']." (vencido)";	?></li>
 									<?php else: ?>
 										<li><?php echo $expirion_date['name_product']." (".$expirion_date['quant_days']." dias)"; ?></li>
 									<?php endif; ?>
-									
 								<?php endforeach; ?></ul>
 								<?php else: ?>
-									<ul><li>Nenhum produto com a validade esgotando!</li></ul>
+									<ul><li>Nenhum produto com a validade vencendo!</li></ul>
 								<?php endif; ?>
 							</div>
 						</div>

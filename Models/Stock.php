@@ -37,8 +37,10 @@ class Stock extends Model {
 
 			/*Verifica quais os produtos que falta 7 dias ou menos para vencer a validade */
 			if($interval->d <= 7) {
+				/*Monta o array com as informaçães que queremos */
 				$dados[$key]['name_product'] =  $value['name_product'];
 				$dados[$key]['quant_days'] = $interval->d;
+				$dados[$key]['expirion_date'] = $value['expirion_date'];
 			}
 		}
 		return $dados;
