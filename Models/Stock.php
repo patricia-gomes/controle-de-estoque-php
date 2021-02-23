@@ -19,11 +19,13 @@ class Stock extends Model {
 	public function quant_product_equal_zero($low_stock) {
 		$model = new Model();
 
-		foreach ($low_stock as $value) {
-			//Se a quantidade do produto estiver vazio deleta
-			if(empty($value['quant_product'])) {
-				$model->Delete_With_Where('entry', array('id'=> $value['id']));
-			} else { return false; }
+		if(!empty($low_stock)) {
+			foreach ($low_stock as $value) {
+				//Se a quantidade do produto estiver vazio deleta
+				if(empty($value['quant_product'])) {
+					$model->Delete_With_Where('entry', array('id'=> $value['id']));
+				} else { return false; }
+			}
 		}
 	}
 	//Retorna os produtos que vão para a lista validade esgotando

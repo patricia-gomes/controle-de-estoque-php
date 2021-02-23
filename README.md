@@ -20,6 +20,7 @@
 
 <ol>
 	<li>A url base do sistema <strong>https://localhost/controle_de_estoque</strong> esta em index.php caso queira alterar</li>
+	<li>Login - User: admin - Password: admin</li>
 	<li>Insira as configurações do seu banco de dados como nome do banco em: <strong>Core/Config.php</strong></li>
 	<li>O arquivo com o sql para criar o banco de dados e as tabelas estão em: <strong>info_sql.sql</strong></li>
 </ol>

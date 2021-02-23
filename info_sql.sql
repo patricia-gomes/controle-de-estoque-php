@@ -53,6 +53,10 @@ INSERT `states` (`id`, `name_state`) VALUES
 (26, 'Sergipe'),
 (27, 'Tocantins');
 
+-- Insere o usuário e a senha de login --
+INSERT `users` (`id`, `user`, `password`) VALUES 
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+
 -- Cria tabela Fornecedor --
 CREATE TABLE `supplier` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
