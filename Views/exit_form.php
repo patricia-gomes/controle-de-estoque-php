@@ -20,6 +20,7 @@
 				<div class="row panel">
 					<div class="col-6">
 						<form method="POST" action="<?php echo BASE_URL; ?>/exit/register" id="form_exit">
+							<?php if(!empty($data_product)) : ?>
 							<?php foreach($data_product as $product): ?>
 								<div class="form-row">
 									<div class="form-group col-md-6">
@@ -34,6 +35,7 @@
 							
 								<input type="hidden" name="id_entry" value="<?php echo $product['id']; ?>">
 							<?php endforeach; ?>
+							<?php endif; ?>
 							<div class="form-row">
 							    <div class="form-group col-md-2">
 									<label for="exampleFormControlInput1">Quantidade</label>

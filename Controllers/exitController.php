@@ -31,12 +31,12 @@ class exitController extends Controller {
 	}
 
 	public function insert() {
-		$model = new Model;
+		$model = new Model();
 		$helper = new Helper();
 
 		if(!empty($_POST['id'])) {
 			$data_product = $model->Select_With_Where('entry', array('id'=>$_POST['id']));
-		}
+		} else { header('Location: '.BASE_URL.'/exit'); }
 
 		$dados['name_title'] = "Exit Form | Controle de estoque";
 		$dados['helper'] = $helper;
@@ -65,7 +65,8 @@ class exitController extends Controller {
 	}
 
 	public function register() {
-		$model = new Model;
+		$model = new Model();
+		$exits = new Exits();
 
 		if(!empty($_POST['id_entry']) && !empty($_POST['quant']) && !empty($_POST['name']) && !empty($_POST['value']) && !empty($_POST['value_total'])) {
 
@@ -73,15 +74,23 @@ class exitController extends Controller {
 			$value_total = str_replace(',', '.', $_POST['value_total']);
 			date_default_timezone_set('America/Porto_Velho');
 
-			//Busca o id do produto na tabela products pelo nome
-			$info_product = $model->Select_With_Where('products', array('name'=>$_POST['name']));
-			foreach ($info_product as $value) {
-				$id_product = $value;
+			//Não permite remover mais produtos do que tem no estoque
+			$current_quant = $exits->select_a_column('quant_product', 'entry', $_POST['id_entry']);
+			/*Verifica se a quantidade digitada pelo user é menor ou igual a quantidade disponivel em estoque */
+			if($_POST['quant'] <= $current_quant['quant_product']) {
+
+				//Busca o id do produto na tabela products pelo nome
+				$info_product = $model->Select_With_Where('products', array('name'=>$_POST['name']));
+				foreach ($info_product as $value) {
+					$id_product = $value;
+				}
+				//Insere na tabela exits
+				$model->Insert('exits', array('name_product'=> $_POST['name'], 'value_product'=> $value_product, 'quant_exit'=> $_POST['quant'], 'id_entry'=> $_POST['id_entry'], 'value_total'=> $value_total, 'id_product'=> $id_product['id'], 'date_exit'=> date("Y-m-d H:i:s")));
+				$this->change_records_entry();
+				header('Location: '.BASE_URL.'/exit');
+			} else {
+				header('Location: '.BASE_URL.'/entry');
 			}
-			//Insere na tabela exits
-			$model->Insert('exits', array('name_product'=> $_POST['name'], 'value_product'=> $value_product, 'quant_exit'=> $_POST['quant'], 'id_entry'=> $_POST['id_entry'], 'value_total'=> $value_total, 'id_product'=> $id_product['id'], 'date_exit'=> date("Y-m-d H:i:s")));
-			$this->change_records_entry();
-			header('Location: '.BASE_URL.'/exit');
 		}
 	}
 
