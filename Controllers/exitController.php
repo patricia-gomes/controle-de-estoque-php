@@ -68,7 +68,7 @@ class exitController extends Controller {
 		$model = new Model();
 		$exits = new Exits();
 
-		if(!empty($_POST['id_entry']) && !empty($_POST['quant']) && !empty($_POST['name']) && !empty($_POST['value']) && !empty($_POST['value_total'])) {
+		if(!empty($_POST['id_entry']) && !empty($_POST['quant']) && !empty($_POST['name']) && !empty($_POST['value_total']) || $_POST['value'] == 0) {
 
 			$value_product = str_replace(',', '.', $_POST['value']);
 			$value_total = str_replace(',', '.', $_POST['value_total']);
