@@ -36,4 +36,13 @@ class Entry extends Model {
 			return $result->fetch(\PDO::FETCH_ASSOC);
 		}
 	}
+
+	public function select_entry_products() {
+		$query = $this->pdo->query("SELECT * FROM entry WHERE quant_product > 0");
+		$query->execute();
+
+		if($query->rowCount() > 0) {
+			return $query->fetchAll(\PDO::FETCH_ASSOC);
+		}
+	}
 }

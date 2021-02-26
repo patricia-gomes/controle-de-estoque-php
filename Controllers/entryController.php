@@ -13,7 +13,8 @@ class entryController extends Controller {
 		}
 		//--------------------------------------------------------------------------
 		$all_entry = $model->Select_All('entry');
-		
+
+		//---Soma o valor total de todas as entradas
 		$quant_total = $helper->sum_quant_total($all_entry, 'quant_product');
 		$select_value_total = $product->select_one_col('entry', 'value_total');
 		//Retorna o valor total de todas as entradas
@@ -26,14 +27,17 @@ class entryController extends Controller {
 
 		//---Subtrai o valor total de entradas com base na saída
 		$select_value_total_exit = $product->select_one_col('exits', 'value_total');
-		$sum_value_total_exit = $helper->sum_value_total($select_value_total_exit);				
+		$sum_value_total_exit = $helper->sum_value_total($select_value_total_exit);
+
+		//---Retorna as entras que a quantidade é maior que zero
+		$select_entry = $entry->select_entry_products();
 	
 		$itens_total = $model->rowCount('entry');
 
 		//---Envia os dados para a view
 		$dados['name_title'] = "Entry | Controle de Estoque";
 		$dados['helper'] = $helper;
-		$dados['all_entry'] = $all_entry;
+		$dados['all_entry'] = $select_entry;
 		$dados['itens_total'] = $itens_total;
 		$dados['quant_total'] = $quant_total;
 		$dados['value_total'] = $value_total;
