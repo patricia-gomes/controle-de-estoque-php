@@ -15,7 +15,7 @@ class dashboardController extends Controller {
 		$all_entry = $model->Select_All('entry');
 
 		//Verifica em Entry se há algum produto com a quantidade igual ou menor que 5
-		$low_stock = $stock->low_stock($all_entry);
+		$low_stock = $stock->low_stock();
 
 		//Verifica se a quantidade é igual a zero para deletar
 		$stock->quant_product_equal_zero($low_stock);
