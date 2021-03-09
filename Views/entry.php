@@ -39,11 +39,11 @@
 											<tr>
 												<td><?php echo $info['name_product']; ?></td>
 												<td><?php echo $info['name_supplier']; ?></td>
-												<td><?php echo str_replace('-', '/', $info['date_time']); ?></td>
+												<td><?php echo date('d/m/Y', strtotime($info['date_time'])); ?></td>
 												<td><?php echo "R$ ".$helper->replace_point_in_comma($info['value_product']); ?></td>
 												<td><?php echo $info['quant_product']; ?></td>
 												<td><?php echo "R$ ".$helper->replace_point_in_comma($info['value_total']); ?></td>
-												<td><?php echo str_replace('-', '/', $info['expirion_date']); ?></td>	
+												<td><?php echo date('d/m/Y', strtotime($info['expirion_date'])); ?></td>	
 												<td>
 													<form method="POST" action="<?php echo BASE_URL; ?>/exit/insert">
 														<!-- Button Saída -->

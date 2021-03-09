@@ -36,7 +36,7 @@
 									<?php foreach($all_dados as $info): ?>
 										<tr>
 											<td><?php echo $info['name_product']; ?></td>
-											<td><?php echo str_replace('-', '/', $info['date_exit']); ?></td>
+											<td><?php echo date('d/m/Y', strtotime($info['date_exit']));?></td>
 											<td><?php echo "R$ ".$helper->replace_point_in_comma($info['value_product']); ?></td>
 											<td><?php echo $info['quant_exit']; ?></td>
 											<td><?php echo "R$ ".$helper->replace_point_in_comma($info['value_total']); ?></td>
