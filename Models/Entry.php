@@ -45,4 +45,14 @@ class Entry extends Model {
 			return $query->fetchAll(\PDO::FETCH_ASSOC);
 		}
 	}
+
+	//Seleciona apenas a coluna de validade do produto
+	public function select_validity() {
+		$query = $this->pdo->query("SELECT * FROM entry WHERE expirion_date");
+		$query->execute();
+
+		if($query->rowCount() > 0) {
+			return $query->fetchAll(\PDO::FETCH_ASSOC);
+		}
+	}
 }

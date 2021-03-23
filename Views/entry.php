@@ -35,7 +35,7 @@
 								</thead>
 								<tbody>
 									<?php if(!empty($all_entry)): ?>
-										<?php foreach($all_entry as $info): ?>
+										<?php foreach($all_entry as $info): ?>				
 											<tr>
 												<td><?php echo $info['name_product']; ?></td>
 												<td><?php echo $info['name_supplier']; ?></td>
@@ -43,7 +43,13 @@
 												<td><?php echo "R$ ".$helper->replace_point_in_comma($info['value_product']); ?></td>
 												<td><?php echo $info['quant_product']; ?></td>
 												<td><?php echo "R$ ".$helper->replace_point_in_comma($info['value_total']); ?></td>
-												<td><?php echo date('d/m/Y', strtotime($info['expirion_date'])); ?></td>	
+												<td>
+													<?php if($info['expirion_date'] == 'NULL'): ?>
+														<?php echo "Sem validade!"; ?>
+													<?php else: ?>
+														<?php echo date('d/m/Y', strtotime($info['expirion_date'])); ?>
+													<?php endif; ?>
+												</td>
 												<td>
 													<form method="POST" action="<?php echo BASE_URL; ?>/exit/insert">
 														<!-- Button Saída -->
