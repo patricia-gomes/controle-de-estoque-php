@@ -36,12 +36,13 @@ class dashboardController extends Controller {
 	public function validity() {
 		$model = new Model();
 		$stock = new Stock();
+		$entry = new Entry();
 
 		//--------------------------------------------------------------------------
-		$all_entry = $model->Select_All('entry');
+		$validity = $entry->select_validity();
 
 		//Verificando quais produtos estão perto de vencer a validade
-		$winning_products  = $stock->validity_running_out($all_entry);
+		$winning_products  = $stock->validity_running_out($validity);
 
 		//Envia os dados para a view
 		$dados['name_title'] = "Validade| Controle de estoque";

@@ -21,6 +21,7 @@
 					</div>
 					<div class="col-4">
 						<!---Painel de alerta 2--->
+					<a id="link_alert_panel_validity" href="<?php echo BASE_URL; ?>/dashboard/validity">
 						<div class="alert_panel">
 							<div class="alert_panel_title">Validade vencendo</div>
 							<div class="alert_panel_content">
@@ -42,6 +43,7 @@
 								<?php endif; ?>
 							</div>
 						</div>
+					</a>
 						<!---->
 					</div>
 				</div>
