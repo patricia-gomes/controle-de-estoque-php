@@ -88,6 +88,9 @@ class productsController extends Controller {
 	public function update() {
 		$model = new Model();
 		$products = new Products();
+
+		//Pega a url da antiga imagem no banco
+		$former_url_img = $model->Select_With_Where('products', array('id' => $_POST['id_product']));
 		
 		//Verifica se o id foi enviado para atualizar pelo id
 		if(!empty($_POST['id_product'])) {
@@ -103,9 +106,16 @@ class productsController extends Controller {
 				), array('id' => $_POST['id_product']) );
 				header('Location: '.BASE_URL.'/products');
 			}
+		
 			//Altera a imagem
 			if(!empty($_FILES['img']['tmp_name'])) {
-				//Url da imagem
+				//Se tiver uma url cadastrada no banco, remove a antiga imagem de uploads
+				if(!empty($former_url_img)) {
+					foreach($former_url_img as $former_url) {
+						unlink($former_url['url_img_product']);//remove a imagem da pasta uploads
+					}					
+				}
+				//Cria Url da imagem
 				$path_img = $products->upload_img($_FILES['img']);
 
 				$model->Update_With_Where('products', array('url_img_product' => $path_img), array('id' => $_POST['id_product']));
