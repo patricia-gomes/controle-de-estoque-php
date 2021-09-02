@@ -5,5 +5,8 @@
             "name": "Patricia Gomes",
             "email": "patriciagomesro33@gmail.com"
         }
-    ]
+    ],
+    "require": {
+        "php": "^7.3.0"
+    }
 }
