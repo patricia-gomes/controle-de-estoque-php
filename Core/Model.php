@@ -17,7 +17,6 @@ class Model {
 		switch($_SERVER['HTTP_HOST']) {
 			case "localhost":
 				if (!defined('BASE_URL')) define('BASE_URL', 'https://localhost/controle_de_estoque');
-				//define("BASE_URL", "https://localhost/controle_de_estoque");
 				$this->host = "localhost";
 				$this->user = "root";
 				$this->pass = "";
@@ -25,7 +24,6 @@ class Model {
 			break;
 			default:
 				if (!defined('BASE_URL')) define('BASE_URL', 'https://controle-de-estoque-php.herokuapp.com/');
-				//define("BASE_URL", "https://controle-de-estoque-php.herokuapp.com/");
 				//Get Heroku ClearDB connection information
 				$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 				$this->host = $cleardb_url["host"];
