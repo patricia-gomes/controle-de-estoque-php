@@ -1,6 +1,5 @@
 <?php
 session_start();
-define("BASE_URL", "https://localhost/controle_de_estoque");
 /*Quando uma classe for instanciada em qualquer parte do sistema,
 a função vai percorrer essas tres pastas para encontra-la*/
 spl_autoload_register(function($class) {

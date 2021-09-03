@@ -1,18 +1,45 @@
 <?php
-class Model extends Config {
+class Model {
 	/*
 	* Classe com conexao com o banco e CRUD básico
 	* A propriedade $pdo esta como 'protected' porque vai ser utilizada em classes em Models
 	*/
 	protected $pdo;
+	protected $host;
+	protected $user;
+	protected $pass;
+	protected $dbname;
+	protected $charset = "utf8";
 
 	//Conexao com o banco de dados
 	public function __construct() {
+
+		switch($_SERVER['HTTP_HOST']) {
+			case "localhost":
+				if (!defined('BASE_URL')) define('BASE_URL', 'https://localhost/controle_de_estoque');
+				$this->host = "localhost";
+				$this->user = "root";
+				$this->pass = "";
+				$this->dbname  = "controle_de_estoque";
+			break;
+			default:
+				if (!defined('BASE_URL')) define('BASE_URL', 'https://controle-de-estoque-php.herokuapp.com/');
+				//Get Heroku ClearDB connection information
+				$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+				$this->host = $cleardb_url["host"];
+				$this->user = $cleardb_url["user"];
+				$this->pass = $cleardb_url["pass"];
+				$this->dbname = substr($cleardb_url["path"],1);
+				$active_group = 'default';
+				$query_builder = TRUE;
+			break;
+		}
+
 		try {
-			$this->pdo = new \PDO("mysql:host=".Config::HOST.";dbname=".Config::DBNAME.";charset=".Config::CHARSET, Config::USER, Config::PASS);
+			$this->pdo = new \PDO("mysql:host=".$this->host.";dbname=".$this->dbname.";charset=".$this->charset, $this->user, $this->pass);
 			$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 		} catch(\PDOException $e) {
-			echo "ERROR: ".$e->getMessage();exit;
+			echo "Error Connection: ".$e->getMessage();exit;
 		}
 	}
 
