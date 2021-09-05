@@ -1,7 +1,17 @@
 <?php
-class dashboardController extends Controller {
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Core\Model;
+use App\Models\Products;
+use App\Models\Stock;
+use App\Helper\Helper;
+use App\Models\Entry;
 
-	public function index() {
+class dashboardController extends Controller 
+{
+
+	public function index() 
+	{
 		$model = new Model();
 		$product = new Products();
 		$stock = new Stock();
@@ -33,7 +43,8 @@ class dashboardController extends Controller {
 		$this->load_template('panel', $dados);
 	}
 
-	public function validity() {
+	public function validity() 
+	{
 		$model = new Model();
 		$stock = new Stock();
 		$entry = new Entry();

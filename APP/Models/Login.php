@@ -1,7 +1,12 @@
 <?php
-class Login extends Model {
+namespace App\Models;
+use App\Core\Model;
 
-	public function verificar_login(string $user, string $password) {
+class Login extends Model
+{
+
+	public function verificar_login(string $user, string $password)
+	{
 		//Busca no banco se o usuario e a senha estao cadastrada
 		$query = "SELECT * FROM users WHERE user = :user AND password = :password";
 		$query = $this->pdo->prepare($query);

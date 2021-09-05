@@ -1,8 +1,14 @@
 <?php
-class stockController extends Controller {
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Core\Model;
+
+class stockController extends Controller 
+{
 
 
-	public function index() {
+	public function index() 
+	{
 		$model = new Model();
 		$info_product_with_id = array();
 		$info_product = array();
@@ -30,7 +36,8 @@ class stockController extends Controller {
 		$this->load_template('insert_stock', $dados);
 	}
 
-	public function insert() {
+	public function insert() 
+	{
 		$model = new Model();
 
 		if(!empty($_POST['id_supplier']) && !empty($_POST['id_product']) && !empty($_POST['quant']) && !empty($_POST['value_product']) && !empty($_POST['value_total'])) {
@@ -41,7 +48,6 @@ class stockController extends Controller {
 			$total = str_replace("R$", "", $_POST['value_total']);
 			$value_total =  str_replace(',', '.', $total);
 			date_default_timezone_set('America/Porto_Velho');
-		//	echo "Value total: ".$value_total;
 
 			if(!empty($_POST['expirion_date'])) {
 				$expirion_date = $_POST['expirion_date'];
