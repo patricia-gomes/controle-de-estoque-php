@@ -1,7 +1,12 @@
 <?php
-class Supplier extends Model {
+namespace App\Models;
+use App\Core\Model;
 
-	public function select_state_from_supplier($id) {
+class Supplier extends Model 
+{
+
+	public function select_state_from_supplier($id) 
+	{
 		$query = "SELECT supplier.id_state, states.name_state FROM supplier 
 		INNER JOIN states ON states.id = supplier.id_state
 		WHERE states.id = $id";
@@ -13,7 +18,8 @@ class Supplier extends Model {
 		}
 	}
 	//Verifica no banco se um fornecedor esta relacionado a tabela entry
-	public function check_supplier($id_supplier) {
+	public function check_supplier($id_supplier) 
+	{
 		foreach($id_supplier as $value) { 
 			$query_verification = "SELECT entry.id_supplier, supplier.id FROM entry
 				INNER JOIN supplier ON supplier.id = entry.id_supplier
