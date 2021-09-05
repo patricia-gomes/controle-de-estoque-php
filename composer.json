@@ -6,7 +6,17 @@
             "email": "patriciagomesro33@gmail.com"
         }
     ],
+    "keywords":[
+        "php",
+        "controle de estoque php",
+        "bootstrap"
+    ],
     "require": {
-        "php": "^8.0.1"
+        "php": ">=8.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\" : "App/"
+        }
     }
 }
