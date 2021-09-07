@@ -29,7 +29,7 @@ class Model
 				$this->dbname  = "controle_de_estoque";
 			break;
 			default:
-				if (!defined('BASE_URL')) define('BASE_URL', 'https://controle-de-estoque-php.herokuapp.com/');
+				if (!defined('BASE_URL')) define('BASE_URL', 'https://controle-de-estoque-php.herokuapp.com');
 				//Get Heroku ClearDB connection information
 				$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 				$this->host = $cleardb_url["host"];
