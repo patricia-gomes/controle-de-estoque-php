@@ -2,10 +2,10 @@
 namespace App\Models;
 use App\Core\Model;
 
-class Login extends Model 
+class Login extends Model
 {
 
-	public function verificar_login(string $user, string $password) 
+	public function verificar_login(string $user, string $password)
 	{
 		//Busca no banco se o usuario e a senha estao cadastrada
 		$query = "SELECT * FROM users WHERE user = :user AND password = :password";

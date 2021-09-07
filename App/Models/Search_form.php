@@ -2,7 +2,7 @@
 namespace App\Models;
 use App\Core\Model;
 
-class Search_form extends Model 
+class Search_form extends Model
 {
 
 	//Busca pelo nome do produto quanto pelo nome do fornecedor

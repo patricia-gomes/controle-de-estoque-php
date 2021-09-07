@@ -2,11 +2,11 @@
 namespace App\Models;
 use App\Core\Model;
 
-class Products extends Model 
+class Products extends Model
 {
 
 	//Upload de imagem
-	public function upload_img($img) 
+	public function upload_img($img)
 	{
 		/*  Vai armazenar a imagem em uma pasta chamada uploads*/
 
@@ -28,7 +28,7 @@ class Products extends Model
 		}
 	}
 	//Retorna apenas o resultado de uma coluna de qualquer tabela
-	public function select_one_col($table, $col_name) 
+	public function select_one_col($table, $col_name)
 	{
 		$query = "SELECT {$col_name} FROM {$table}";
 		$query = $this->pdo->query($query);
@@ -39,7 +39,7 @@ class Products extends Model
 	}
 
 	//Verifica no banco se um produto esta relacionado a tabela entry
-	public function check_product_in_entry($id_product) 
+	public function check_product_in_entry($id_product)
 	{
 
 		$query_verification = "SELECT entry.id_product, products.id FROM entry
@@ -53,7 +53,7 @@ class Products extends Model
 	}
 
 	//Verifica no banco se um produto esta relacionado a tabela exits
-	public function check_product_in_exits($id_product) 
+	public function check_product_in_exits($id_product)
 	{
 
 		$query_verification = "SELECT exits.id_product, products.id FROM exits
