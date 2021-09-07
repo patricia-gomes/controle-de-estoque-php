@@ -1,7 +1,12 @@
 <?php
-class Exits extends Model {
+namespace App\Models;
+use App\Core\Model;
 
-	public function select_a_column($name_column, $table, $id) {
+class Exits extends Model 
+{
+
+	public function select_a_column($name_column, $table, $id) 
+	{
 		$query = $this->pdo->query("SELECT {$name_column} FROM {$table} WHERE id = {$id}");
 		$query->execute();
 

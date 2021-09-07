@@ -1,7 +1,16 @@
 <?php
-class supplierController extends Controller {
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Core\Model;
+use App\Models\Search_form;
+use App\Helper\Helper;
+use App\Models\Supplier;
 
-	public function index() {
+class supplierController extends Controller 
+{
+
+	public function index() 
+	{
 		$model = new Model();
 		$supplier = new Supplier();
 
@@ -22,7 +31,8 @@ class supplierController extends Controller {
 		$this->load_template('supplier', $dados);
 	}
 
-	public function insert() {
+	public function insert() 
+	{
 		$model = new Model();
 
 		//Seleciona todos os estados
@@ -35,7 +45,8 @@ class supplierController extends Controller {
 		$this->load_template('insert_supplier', $dados);
 	}
 
-	public function search() {
+	public function search() 
+	{
 		$fetch = new Search_form();
 		$helper = new Helper();
 		$supplier = new Supplier();
@@ -55,7 +66,8 @@ class supplierController extends Controller {
 	}
 
 	//Insere os dados de fornecedor (supplier) no banco
-	public function register() {
+	public function register() 
+	{
 		$model = new Model();
 		
 		if(!empty($_POST['name']) && !empty($_POST['cnpj']) && !empty($_POST['address']) && !empty($_POST['number_address']) && !empty($_POST['neighborhood']) && !empty($_POST['phone']) && !empty($_POST['city']) && !empty($_POST['id_state']) && !empty($_POST['email']))  {
@@ -86,7 +98,8 @@ class supplierController extends Controller {
 		}
 	}
 
-	public function edit($id_supplier) {
+	public function edit($id_supplier) 
+	{
 		$model = new Model();
 		$supplier = new Supplier();
 
@@ -111,7 +124,8 @@ class supplierController extends Controller {
 		$this->load_template('edit_supplier', $dados);
 	}
 	//Atualiza as informações de fornedores no banco
-	public function update() {
+	public function update() 
+	{
 		$model = new Model();
 		$supplier = new Supplier();
 
@@ -146,7 +160,8 @@ class supplierController extends Controller {
 		}
 	}
 	//Deleta um fornecedor que não esta vinculado a nenhuma outra tabela
-	public function delete() {
+	public function delete() 
+	{
 		$model = new Model();
 
 		$model->Delete_With_Where('supplier', array('id' => $_POST['id_supplier']));

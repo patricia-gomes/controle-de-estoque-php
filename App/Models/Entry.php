@@ -1,12 +1,18 @@
 <?php
-class Entry extends Model {
+namespace App\Models;
+use App\Core\Model;
+
+class Entry extends Model
+{
 
 	//Subtrai valores inteiros
-	public function SubtractQuantInt($quant_entry, $quant_exit) {
+	public function SubtractQuantInt($quant_entry, $quant_exit)
+	{
 		return $quant_entry - $quant_exit;
 	}
 	//Subtrai valores monetarios
-	public function SubtractValueMoney($value_total_entry, $value_total_exits) {
+	public function SubtractValueMoney($value_total_entry, $value_total_exits)
+	{
 		$value_total_entry = str_replace(',', '.', $value_total_entry);
 		$value_total_entry = str_replace('R$', '', $value_total_entry);
 		$value_total_exits = str_replace(',', '.', $value_total_exits);
@@ -14,7 +20,8 @@ class Entry extends Model {
 		return $value_total_entry - $value_total_exits;
 	}
 	/*Retorna o id máximo da tabela exits*/
-	public function IdMax() {
+	public function IdMax()
+	{
 		$query = $this->pdo->query("SELECT MAX(id) as max_id FROM exits");
 		if($query->rowCount() > 0) { 
 			$result = $query->fetch();
@@ -22,7 +29,8 @@ class Entry extends Model {
 		} else { return false; }
 	}
 	
-	public function selectSpecificDadosEntry($info_exits) {
+	public function selectSpecificDadosEntry($info_exits) 
+	{
 
 		$query = "SELECT * FROM entry WHERE id = ";
 		if(!empty($info_exits)) {
@@ -37,7 +45,8 @@ class Entry extends Model {
 		}
 	}
 
-	public function select_entry_products() {
+	public function select_entry_products() 
+	{
 		$query = $this->pdo->query("SELECT * FROM entry WHERE quant_product > 0");
 		$query->execute();
 
@@ -47,7 +56,8 @@ class Entry extends Model {
 	}
 
 	//Seleciona apenas a coluna de validade do produto
-	public function select_validity() {
+	public function select_validity() 
+	{
 		$query = $this->pdo->query("SELECT * FROM entry WHERE expirion_date AND quant_product > 0");
 		$query->execute();
 

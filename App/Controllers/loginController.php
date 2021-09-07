@@ -1,7 +1,13 @@
 <?php
-class loginController extends Controller {
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Models\Login;
 
-	public function index() {
+class loginController extends Controller 
+{
+
+	public function index() 
+	{
 		$login = new Login();
 		//verificano se o campo esta preenchido
 		if(!empty($_POST['user']) && !empty($_POST['password'])) {

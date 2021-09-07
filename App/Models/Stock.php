@@ -1,8 +1,13 @@
 <?php
-class Stock extends Model {
+namespace App\Models;
+use App\Core\Model;
+
+class Stock extends Model 
+{
 
 	//Retorna os produtos com estoque baixo
-	public function low_stock() {
+	public function low_stock() 
+	{
 		$query = $this->pdo->query("SELECT * FROM entry WHERE quant_product <= 5 LIMIT 5");
 		$query->execute();
 
@@ -11,7 +16,8 @@ class Stock extends Model {
 		}
 	}
 
-	public function quant_product_equal_zero($low_stock) {
+	public function quant_product_equal_zero($low_stock) 
+	{
 		$model = new Model();
 
 		if(!empty($low_stock)) {
@@ -24,7 +30,8 @@ class Stock extends Model {
 		}
 	}
 	//Retorna os produtos que vão para a lista validade esgotando
-	public function validity_running_out($all_entry) {
+	public function validity_running_out($all_entry) 
+	{
 		$dados = array();
 		if(!empty($all_entry)) {
 			foreach ($all_entry as $key => $value) {

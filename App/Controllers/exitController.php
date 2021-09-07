@@ -1,7 +1,18 @@
 <?php
-class exitController extends Controller {
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Core\Model;
+use App\Models\Products;
+use App\Helper\Helper;
+use App\Models\Search_form;
+use App\Models\Exits;
+use App\Models\Entry;
 
-	public function index() {
+class exitController extends Controller 
+{
+
+	public function index() 
+	{
 		$model = new Model();
 		$helper = new Helper();
 		$product = new Products();
@@ -30,7 +41,8 @@ class exitController extends Controller {
 		$this->load_template('exit', $dados);
 	}
 
-	public function insert() {
+	public function insert() 
+	{
 		$model = new Model();
 		$helper = new Helper();
 
@@ -45,7 +57,8 @@ class exitController extends Controller {
 		$this->load_template('exit_form', $dados);
 	}
 
-	public function search() {
+	public function search() 
+	{
 		$model = new Model();
 		$product = new Products();
 		$fetch = new Search_form();
@@ -64,7 +77,8 @@ class exitController extends Controller {
 		$this->load_template('search_exits', $dados);
 	}
 
-	public function register() {
+	public function register() 
+	{
 		$model = new Model();
 		$exits = new Exits();
 
@@ -95,7 +109,8 @@ class exitController extends Controller {
 	}
 
 	//Altera os registros de Entry para atualizar
-	public function change_records_entry() {
+	public function change_records_entry() 
+	{
 		$entry = new Entry();
 		$model = new Model();
 		$product = new Products();

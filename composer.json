@@ -8,5 +8,10 @@
     ],
     "require": {
         "php": "^8.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
     }
 }

@@ -1,7 +1,16 @@
 <?php
-class productsController extends Controller {
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Core\Model;
+use App\Models\Products;
+use App\Helper\Helper;
+use App\Models\Search_form;
 
-	public function index() {
+class productsController extends Controller 
+{
+
+	public function index() 
+	{
 		$dados = array();
 		$model = new Model;
 		$helper = new Helper();
@@ -23,7 +32,8 @@ class productsController extends Controller {
 		$this->load_template('products', $dados);
 	}
 
-	public function insert() {
+	public function insert() 
+	{
 		$dados = array();
 
 		//Envia os dados para a view
@@ -32,7 +42,8 @@ class productsController extends Controller {
 		$this->load_template('insert_produt', $dados);
 	}
 
-	public function register() {
+	public function register() 
+	{
 		$model = new Model;
 		$products = new Products();
 
@@ -50,7 +61,8 @@ class productsController extends Controller {
 		}
 	}
 
-	public function search() {
+	public function search() 
+	{
 		$fetch = new Search_form();
 		$helper = new Helper();
 		$result = array();
@@ -67,7 +79,8 @@ class productsController extends Controller {
 		$this->load_template('search_products', $dados);
 	}
 
-	public function edit($id) {
+	public function edit($id) 
+	{
 		$model = new Model;
 		$helper = new Helper();
 
@@ -85,7 +98,8 @@ class productsController extends Controller {
 		$this->load_template('edit_product', $dados);
 	}
 	//Atualiza as informações de produtos no banco
-	public function update() {
+	public function update() 
+	{
 		$model = new Model();
 		$products = new Products();
 
@@ -123,7 +137,8 @@ class productsController extends Controller {
 		}	
 	}
 	//Deleta um produto que não esta vinculado a nenhuma outra tabela
-	public function delete() {
+	public function delete() 
+	{
 		$model = new Model();
 		$product = new Products();
 

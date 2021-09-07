@@ -1,7 +1,17 @@
 <?php
-class entryController extends Controller {
+namespace App\Controllers;
+use App\Core\Controller;
+use App\Core\Model;
+use App\Models\Products;
+use App\Helper\Helper;
+use App\Models\Search_form;
+use App\Models\Entry;
 
-	public function index() {
+class entryController extends Controller 
+{
+
+	public function index() 
+	{
 		$model = new Model();
 		$helper = new Helper();
 		$entry = new Entry();
@@ -45,7 +55,8 @@ class entryController extends Controller {
 		$this->load_template('entry', $dados);
 	}
 
-	public function search() {
+	public function search() 
+	{
 		$fetch = new Search_form();
 		$helper = new Helper();
 		$result = array();

@@ -1,5 +1,10 @@
 <?php
-class Model {
+namespace App\Core;
+use App\Models\Products;
+use App\Models\Supplier;
+
+class Model 
+{
 	/*
 	* Classe com conexao com o banco e CRUD básico
 	* A propriedade $pdo esta como 'protected' porque vai ser utilizada em classes em Models
@@ -12,7 +17,8 @@ class Model {
 	protected $charset = "utf8";
 
 	//Conexao com o banco de dados
-	public function __construct() {
+	public function __construct() 
+	{
 
 		switch($_SERVER['HTTP_HOST']) {
 			case "localhost":
@@ -44,7 +50,8 @@ class Model {
 	}
 
 	//Seleciona todas as colunas de qualquer tabela
-	public function Select_All($table) {
+	public function Select_All($table) 
+	{
 		$query = "SELECT * FROM {$table}";
 		$query = $this->pdo->query($query);
 		//Verifica se retornou algum dado do banco antes de armazenar na propriedade $result
@@ -53,7 +60,8 @@ class Model {
 		}
 	}
 	//Retorna a quantidade de registros tem uma tabela
-	public function rowCount($table) {
+	public function rowCount($table) 
+	{
 		$sql = "SELECT count(id) as qt FROM {$table}";
 		$sql = $this->pdo->query($sql);
 
@@ -66,7 +74,8 @@ class Model {
 	}
 
 	//Seleciona todos as colunas em qualquer tabela utilizando a clausula  where
-	public function Select_With_Where($table, $where = array()) {
+	public function Select_With_Where($table, $where = array()) 
+	{
 		//Verifica se a tabela e a clausula where foi enviada
 		if(!empty($table) && !empty($where)) {
 		$query = "SELECT * FROM {$table} WHERE ";
@@ -84,7 +93,8 @@ class Model {
 	}
 
 	//Insere em qualquer tabela e em qualquer quantidade de coluna tiver essa tabela
-	public function Insert($table, $colunas = array()) {
+	public function Insert($table, $colunas = array()) 
+	{
 		$dados = array();
 		//Perconrendo o array das colunas para pegar as colunas da tabela
 		foreach($colunas as $coluna => $value) {
@@ -102,7 +112,8 @@ class Model {
 	}
 
 	//Edita um dado por vez em qualquer tabela
-	public function Update_With_Where($table, $newDados = array(), $where = array()) {
+	public function Update_With_Where($table, $newDados = array(), $where = array()) 
+	{
 		
 		if(!empty($table) && !empty($newDados) && !empty($where)) {
 			/*query exemplo: UPDATE produtos SET coluna = 'value', coluna2 = 'value2' WHERE
@@ -130,7 +141,8 @@ class Model {
 	* A mesma coisa com fornecedor(supplier) para apaga-lo verifico se tem algum registro com 
 	* o id dele vinculado a tabela entry.
 	*/
-	public function Delete_With_Where($table, $where) {
+	public function Delete_With_Where($table, $where) 
+	{
 		$product = new Products();
 		$supplier = new Supplier();
 
