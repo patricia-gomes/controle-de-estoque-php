@@ -42,7 +42,7 @@ class Core
 	private function set_controller() 
 	{
 		//Se o controller nao foi envido define como loginController
-		$this->controller = (empty($this->array_url) || !isset($this->array_url)) ? 'loginController' : $this->array_url[0].'Controller';
+		$this->controller = (empty($this->array_url) || !isset($this->array_url)) ? 'loginController' : $this->array_url[0];
 	}
 	//Define a action
 	private function set_action() 
@@ -63,9 +63,9 @@ class Core
 	}
 	//Verifica se o controller existe
 	private function validate_controller() 
-	{
+	{ 
 		//Se o controller digitado na url nao existir chama o notfoundController
-		if(!file_exists('Controllers/'.$this->controller.'.php')) {
+		if(!file_exists('App/Controllers/'.$this->controller.'Controller.php')) {
 			$this->controller = 'notfoundController';
 			$this->action = 'index';
 		}
@@ -84,12 +84,12 @@ class Core
 	Vai ser chamado no index.php */
 	public function run() 
 	{
-		$this->run_controller = "Controllers/".$this->controller;//Endereço onde esta os controllers
+		$this->run_controller = "App\\Controllers\\".$this->controller.'Controller';//Endereço onde esta os controllers
 
 		$this->validate_controller();
 		
 		//Instancia o controller
-		$this->run_controller = new $this->controller();
+		$this->run_controller = new $this->run_controller();
 		
 		$this->validate_action();
 

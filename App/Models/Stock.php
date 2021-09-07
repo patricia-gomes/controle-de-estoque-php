@@ -39,8 +39,8 @@ class Stock extends Model
 				date_default_timezone_set('America/Porto_Velho');
 				//Verifica se o produto tem data de validade
 				if(!empty($value['expirion_date'])) {
-					$current_date  = new DateTime( date('Y-m-d') );
-					$expirion_date = new DateTime($value['expirion_date']);
+					$current_date  = new \DateTime( date('Y-m-d') );
+					$expirion_date = new \DateTime($value['expirion_date']);
 					//Método diff retorna o intervalo entre a data atual e a da validade
 					$interval  = $current_date->diff($expirion_date);
 
