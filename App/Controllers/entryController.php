@@ -2,10 +2,10 @@
 namespace App\Controllers;
 use App\Core\Controller;
 use App\Core\Model;
-use App\Models\Products;
 use App\Helper\Helper;
-use App\Models\Search_form;
 use App\Models\Entry;
+use App\Models\Products;
+use App\Models\Search_form;
 
 class entryController extends Controller 
 {

@@ -3,23 +3,22 @@ namespace App\Core;
 use App\Models\Products;
 use App\Models\Supplier;
 
-class Model 
+class Model
 {
 	/*
-	* Classe com conexao com o banco e CRUD básico
-	* A propriedade $pdo esta como 'protected' porque vai ser utilizada em classes em Models
+	* Classe com CRUD e informaçoes do banco de dados
+	* A propriedade $pdo esta como 'protected' porque vai ser utilizada em outras classes dentro de Models
 	*/
+
 	protected $pdo;
-	protected $host;
-	protected $user;
-	protected $pass;
-	protected $dbname;
-	protected $charset = "utf8";
+	private $host;
+	private $user;
+	private $pass;
+	private $dbname;
+	private $charset = "utf8";
 
-	//Conexao com o banco de dados
-	public function __construct() 
+	public function __construct()
 	{
-
 		switch($_SERVER['HTTP_HOST']) {
 			case "localhost":
 				if (!defined('BASE_URL')) define('BASE_URL', 'https://localhost/controle_de_estoque');
@@ -29,7 +28,7 @@ class Model
 				$this->dbname  = "controle_de_estoque";
 			break;
 			default:
-				if (!defined('BASE_URL')) define('BASE_URL', 'https://controle-de-estoque-php.herokuapp.com');
+				if (!defined('BASE_URL')) define('BASE_URL', 'https://controle-de-estoque-php.herokuapp.com/');
 				//Get Heroku ClearDB connection information
 				$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 				$this->host = $cleardb_url["host"];
@@ -40,7 +39,7 @@ class Model
 				$query_builder = TRUE;
 			break;
 		}
-
+		
 		try {
 			$this->pdo = new \PDO("mysql:host=".$this->host.";dbname=".$this->dbname.";charset=".$this->charset, $this->user, $this->pass);
 			$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
@@ -48,9 +47,9 @@ class Model
 			echo "Error Connection: ".$e->getMessage();exit;
 		}
 	}
-
+	
 	//Seleciona todas as colunas de qualquer tabela
-	public function Select_All($table) 
+	public function Select_All($table)
 	{
 		$query = "SELECT * FROM {$table}";
 		$query = $this->pdo->query($query);
@@ -60,7 +59,7 @@ class Model
 		}
 	}
 	//Retorna a quantidade de registros tem uma tabela
-	public function rowCount($table) 
+	public function rowCount($table)
 	{
 		$sql = "SELECT count(id) as qt FROM {$table}";
 		$sql = $this->pdo->query($sql);
@@ -74,7 +73,7 @@ class Model
 	}
 
 	//Seleciona todos as colunas em qualquer tabela utilizando a clausula  where
-	public function Select_With_Where($table, $where = array()) 
+	public function Select_With_Where($table, $where = array())
 	{
 		//Verifica se a tabela e a clausula where foi enviada
 		if(!empty($table) && !empty($where)) {
@@ -93,7 +92,7 @@ class Model
 	}
 
 	//Insere em qualquer tabela e em qualquer quantidade de coluna tiver essa tabela
-	public function Insert($table, $colunas = array()) 
+	public function Insert($table, $colunas = array())
 	{
 		$dados = array();
 		//Perconrendo o array das colunas para pegar as colunas da tabela
@@ -112,7 +111,7 @@ class Model
 	}
 
 	//Edita um dado por vez em qualquer tabela
-	public function Update_With_Where($table, $newDados = array(), $where = array()) 
+	public function Update_With_Where($table, $newDados = array(), $where = array())
 	{
 		
 		if(!empty($table) && !empty($newDados) && !empty($where)) {
@@ -141,7 +140,7 @@ class Model
 	* A mesma coisa com fornecedor(supplier) para apaga-lo verifico se tem algum registro com 
 	* o id dele vinculado a tabela entry.
 	*/
-	public function Delete_With_Where($table, $where) 
+	public function Delete_With_Where($table, $where)
 	{
 		$product = new Products();
 		$supplier = new Supplier();

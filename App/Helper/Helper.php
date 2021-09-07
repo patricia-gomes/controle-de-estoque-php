@@ -1,11 +1,11 @@
 <?php
 namespace App\Helper;
 
-class Helper 
+class Helper
 {
 
 	//Substitui o ponto pela vírgula nos preços dos produtos
-	public function replace_point_in_comma($value) 
+	public function replace_point_in_comma($value)
 	{
 		return str_replace('.', ',', $value);
 	}
@@ -26,7 +26,7 @@ class Helper
 		}
 	}
 	//Soma todos os valores total
-	public function sum_value_total($value_total) 
+	public function sum_value_total($value_total)
 	{
 		$sum = 0.00;
 		if(!empty($value_total) && is_array($value_total)) {

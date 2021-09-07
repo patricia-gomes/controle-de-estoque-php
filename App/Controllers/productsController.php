@@ -2,8 +2,8 @@
 namespace App\Controllers;
 use App\Core\Controller;
 use App\Core\Model;
-use App\Models\Products;
 use App\Helper\Helper;
+use App\Models\Products;
 use App\Models\Search_form;
 
 class productsController extends Controller 

@@ -29,9 +29,8 @@ class Entry extends Model
 		} else { return false; }
 	}
 	
-	public function selectSpecificDadosEntry($info_exits) 
-	{
-
+	public function selectSpecificDadosEntry($info_exits)
+	{	
 		$query = "SELECT * FROM entry WHERE id = ";
 		if(!empty($info_exits)) {
 			foreach($info_exits as $col => $values) {
@@ -45,8 +44,8 @@ class Entry extends Model
 		}
 	}
 
-	public function select_entry_products() 
-	{
+	public function select_entry_products()
+	{	
 		$query = $this->pdo->query("SELECT * FROM entry WHERE quant_product > 0");
 		$query->execute();
 
@@ -56,8 +55,8 @@ class Entry extends Model
 	}
 
 	//Seleciona apenas a coluna de validade do produto
-	public function select_validity() 
-	{
+	public function select_validity()
+	{	
 		$query = $this->pdo->query("SELECT * FROM entry WHERE expirion_date AND quant_product > 0");
 		$query->execute();
 
