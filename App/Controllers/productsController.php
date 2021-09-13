@@ -35,6 +35,7 @@ class productsController extends Controller
 	public function insert() 
 	{
 		$dados = array();
+		$model = new Model;
 
 		//Envia os dados para a view
 		$dados['name_title'] = "Insert produt | Controle de estoque";
