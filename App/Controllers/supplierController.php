@@ -32,7 +32,7 @@ class supplierController extends Controller
 	}
 
 	public function insert() 
-	{
+	{	
 		$model = new Model();
 
 		//Seleciona todos os estados

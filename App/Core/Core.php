@@ -46,7 +46,7 @@ class Core
 	}
 	//Define a action
 	private function set_action()
-	{
+	{	
 		//Apaga a primeira posiçao do array que esta vazia
 		array_shift($this->array_url);
 		//Se a action nao foi enviada a padrao é definida como index
@@ -72,9 +72,9 @@ class Core
 	}
 	//Verifica se o método ou action exite
 	private function validate_action()
-	{
+	{	
 		//Se o metodo nao existir chama o notfoundController
-		if(!method_exists($this->controller, $this->action)) {
+		if(!method_exists('App\\Controllers\\'.$this->controller.'Controller', $this->action)) {
 			$this->controller = 'notfoundController';
 			$this->action = 'index';
 		}
