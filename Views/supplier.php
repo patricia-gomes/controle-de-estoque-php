@@ -16,7 +16,7 @@
 					</div><br/>
 					<!--- Menu button --->
 					<div class="col-6">
-						<a href="<?php echo BASE_URL; ?>/supplier/insert"><button type="button" class="btn btn-primary">Inserir fornecedor</button></a>
+						<a href="<?php echo BASE_URL; ?>/supplier/insert"><button type="submit" class="btn btn-primary">Inserir fornecedor</button></a>
 					</div>
 				</div>
 				<!-- ./ Row form busca e menu button -->
