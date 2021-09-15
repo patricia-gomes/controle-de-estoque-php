@@ -34,6 +34,7 @@ class Stock extends Model
 	{
 		$dados = array();
 		if(!empty($all_entry)) {
+
 			foreach ($all_entry as $key => $value) {
 				/*A classe DateTime para calcular a diferença entre a data de validade e a data atual */
 				date_default_timezone_set('America/Porto_Velho');
@@ -45,7 +46,7 @@ class Stock extends Model
 					$interval  = $current_date->diff($expirion_date);
 
 					/*Verifica quais os produtos que falta 7 dias ou menos para vencer a validade */
-					if($interval->d <= 7) {
+					if($interval->days <= 7) {
 						/*Monta o array com as informaçães que queremos */
 						$dados[$key]['name_product'] =  $value['name_product'];
 						$dados[$key]['quant_days'] = $interval->d;
