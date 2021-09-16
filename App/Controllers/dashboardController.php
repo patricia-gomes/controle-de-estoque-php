@@ -23,7 +23,7 @@ class dashboardController extends Controller
 			header("Location: ".BASE_URL."/login");
 		}
 		//--------------------------------------------------------------------------
-		$all_entry = $model->Select_All('entry');
+		$all_entry = $stock->select_a_column_larger_than('entry', 'quant_product', 0);
 		$validity = $entry->select_validity();
 		//Verifica em Entry se há algum produto com a quantidade igual ou menor que 5
 		$low_stock = $stock->low_stock();

@@ -58,4 +58,13 @@ class Stock extends Model
 		return $dados;
 	}
 
+	public function select_a_column_larger_than($table, $column, $value)
+	{
+		$query = $this->pdo->query("SELECT * FROM $table WHERE $column > $value");
+		$query->execute();
+		//Verifica que tem algum registro com essa condiçao
+		if($query->rowCount() > 0) {
+			return $query->fetchAll();
+		}
+	}
 }
