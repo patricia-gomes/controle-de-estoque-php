@@ -8,7 +8,7 @@ class Stock extends Model
 	//Retorna os produtos com estoque baixo
 	public function low_stock() 
 	{
-		$query = $this->pdo->query("SELECT * FROM entry WHERE quant_product <= 5 LIMIT 5");
+		$query = $this->pdo->query("SELECT * FROM entry WHERE quant_product <= 5 LIMIT 4");
 		$query->execute();
 
 		if($query->rowCount() > 0) {
@@ -58,4 +58,13 @@ class Stock extends Model
 		return $dados;
 	}
 
+	public function select_a_column_larger_than($table, $column, $value)
+	{
+		$query = $this->pdo->query("SELECT * FROM $table WHERE $column > $value");
+		$query->execute();
+		//Verifica que tem algum registro com essa condiçao
+		if($query->rowCount() > 0) {
+			return $query->fetchAll();
+		}
+	}
 }
