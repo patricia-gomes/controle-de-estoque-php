@@ -114,11 +114,20 @@ class productsController extends Controller
 				$value = str_replace('R$', ' ', $_POST['value']);//Substituindo R$ por ''
 				$value = str_replace(',', '.', $value);//Substituindo , por .
 
-				//Atualiza as duas colunas no banco
+				//Atualiza as duas colunas na tabela products
 				$model->Update_With_Where('products', array(
 					'name' => $_POST['name'],
 					'value_medium' => $value
 				), array('id' => $_POST['id_product']) );
+				//Atualiza a coluna name_product na tabela entry
+				$model->Update_With_Where('entry', array(
+					'name_product' => $_POST['name']
+				), array('id_product' => $_POST['id_product']) );
+				//Atualiza a coluna name_product na tabela exits
+				$model->Update_With_Where('exits', array(
+					'name_product' => $_POST['name']
+				), array('id_product' => $_POST['id_product']) );
+
 				header('Location: '.BASE_URL.'/products');
 			}
 		
