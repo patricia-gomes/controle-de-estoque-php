@@ -45,26 +45,6 @@ class supplierController extends Controller
 		$this->load_template('insert_supplier', $dados);
 	}
 
-	public function search() 
-	{
-		$fetch = new Search_form();
-		$helper = new Helper();
-		$supplier = new Supplier();
-		$result = array();
-
-		$search = $_POST['search'];
-		//Busca
-		$result = $fetch->search('supplier', 'name', 'city', $search);
-
-		//Envia os dados para a view
-		$dados['name_title'] = "$search | Controle de estoque";
-		$dados['helper'] = $helper;
-		$dados['supplier'] = $supplier;
-		$dados['result'] = $result;
-
-		$this->load_template('search_supplier', $dados);
-	}
-
 	//Insere os dados de fornecedor (supplier) no banco
 	public function register() 
 	{
@@ -98,6 +78,26 @@ class supplierController extends Controller
 		}
 	}
 
+	public function search() 
+	{
+		$fetch = new Search_form();
+		$helper = new Helper();
+		$supplier = new Supplier();
+		$result = array();
+
+		$search = $_POST['search'];
+		//Busca
+		$result = $fetch->search('supplier', 'name', 'city', $search);
+
+		//Envia os dados para a view
+		$dados['name_title'] = "$search | Controle de estoque";
+		$dados['helper'] = $helper;
+		$dados['supplier'] = $supplier;
+		$dados['result'] = $result;
+
+		$this->load_template('search_supplier', $dados);
+	}
+
 	public function edit($id_supplier) 
 	{
 		$model = new Model();
@@ -123,6 +123,36 @@ class supplierController extends Controller
 
 		$this->load_template('edit_supplier', $dados);
 	}
+
+	public function message($message)
+	{	
+		$model = new Model();
+		$supplier = new Supplier();
+		$message_success = null;
+		$message_error = null;
+
+		switch($message) {
+			case 'success':
+				$message_success = "<div class='alert alert-success' role='alert'>Excluido com sucesso!</div>";
+			break;
+			case 'error':
+				$message_error = "<div class='alert alert-danger' role='alert'>Esse fornecedor não pode ser excluido por estar vinculado a um produto no estoque!</div>";
+			break;
+		}
+
+		//Seleciona todos os fornecedores
+		$all_supplier = $model->Select_All('supplier');
+
+		//Envia os dados para a view
+		$dados['name_title'] = "Supplier | Controle de Estoque";
+		$dados['supplier'] = $supplier;
+		$dados['all_supplier'] = $all_supplier;
+		$dados['message_success'] = $message_success;
+		$dados['message_error'] = $message_error;
+
+		$this->load_template('supplier', $dados);
+	}
+
 	//Atualiza as informações de fornedores no banco
 	public function update() 
 	{
@@ -164,7 +194,11 @@ class supplierController extends Controller
 	{
 		$model = new Model();
 
-		$model->Delete_With_Where('supplier', array('id' => $_POST['id_supplier']));
-		header('Location: '.BASE_URL.'/supplier');
+		if($model->Delete_With_Where('supplier', array('id' => $_POST['id_supplier']))) {
+			header('Location: '.BASE_URL.'/supplier/message/success');
+		} else {
+			header('Location: '.BASE_URL.'/supplier/message/error');
+		}
+		
 	}
 }

@@ -54,7 +54,7 @@
 										</td>
 										<td><form method="POST" action="<?php echo BASE_URL; ?>/products/delete">
 												<!-- Button trigger modal excluir -->
-												<button type="input" formmethod="post" name="id_product" value="<?php echo $product['id']; ?>" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
+												<button type="input" formmethod="post" name="id_product" value="<?php echo $product['id']; ?>" aria-label="Os produtos que não foram excluidos é porque estão no estoque." class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
 											  		<i class="fa fa-trash-o"></i>
 												</button>
 											</form>
