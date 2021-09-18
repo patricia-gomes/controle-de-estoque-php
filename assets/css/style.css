@@ -71,7 +71,27 @@
 	max-height:350px;
     overflow-y:auto;
 }
-
+/*******Title do button excluir de produtos e fornecedores*********/
+[aria-label] {
+	position: absolute;
+}
+[aria-label]::after {
+	content: attr(aria-label);
+	display: none;
+	position: absolute;
+	top: 110%;
+	left: 0px;
+	z-index: 10000;
+	pointer-events: none;
+	padding: 8px 10px;
+	font-size: .9em;
+	color: #fff;
+	background-color: #412917;
+}
+[aria-label]:hover::after {
+	display: block;
+}
+/***********/
 
 .footer {
 	background-color: #000;

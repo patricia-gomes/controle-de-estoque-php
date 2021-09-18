@@ -155,7 +155,8 @@ class Model
 					foreach ($where as $coluna => $value) {
 						$query.= "$coluna = {$value}";
 					}
-					$this->pdo->query($query);
+					//Retorna o numero de registro deletado
+					return $this->pdo->exec($query);
 				}
 			} else if($table == 'products' || $table == 'entry') {
 					/* Deleta o produto que não esta vinculado a tabela products */

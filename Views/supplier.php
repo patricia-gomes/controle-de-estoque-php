@@ -23,6 +23,13 @@
 				<!-- Tabela -->
 				<div class="col-12">
 					<h3>Fornecedores</h3>
+					<?php
+						if(!empty($message_error)) {
+							echo $message_error;
+						} else if(!empty($message_success)) {
+							echo $message_success;
+						}
+					?>
 					<div class="table-responsive">
 						<table class="table table-bordered table-striped table-hover table-sm">
 							<thead class="thead-light">
@@ -64,7 +71,7 @@
 											</td>
 											<td><form method="POST" action="<?php echo BASE_URL; ?>/supplier/delete">
 													<!-- Button trigger modal excluir -->
-													<button type="input" formmethod="post" name="id_supplier" value="<?php echo $info_supplier['id']; ?>" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" title="Excluir">
+													<button type="input" formmethod="post" name="id_supplier" value="<?php echo $info_supplier['id']; ?>" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
 												  		<i class="fa fa-trash-o"></i>
 													</button>
 												</form>
