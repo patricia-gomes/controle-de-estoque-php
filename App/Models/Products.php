@@ -42,13 +42,14 @@ class Products extends Model
 	public function check_product_in_entry($id_product)
 	{
 
-		$query_verification = "SELECT entry.id_product, products.id FROM entry
+		$query_verification = "SELECT entry.id_product, entry.quant_product FROM entry
 		INNER JOIN products ON products.id = entry.id_product
 		WHERE entry.id_product = $id_product";
 		$result = $this->pdo->query($query_verification);
 
 		if($result->rowCount() > 0) {
-			return true;
+			$array_produts = $result->fetchAll(\PDO::FETCH_ASSOC);
+			
 		} else { return false; }
 	}
 

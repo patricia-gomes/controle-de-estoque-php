@@ -95,7 +95,8 @@ class exitController extends Controller
 
 				//Busca o id do produto na tabela products pelo nome
 				$info_product = $model->Select_With_Where('products', array('name'=>$_POST['name']));
-				foreach ($info_product as $value) {
+
+				foreach($info_product as $value) {
 					$id_product = $value;
 				}
 				//Insere na tabela exits
@@ -147,10 +148,8 @@ class exitController extends Controller
 				array('id'=> $info_entry['id']));
 
 			/*Remove o registro que a subtração retornou zero da tabela entry */
-			if(!empty($update_result_quant_product)) {
-				if($update_result_quant_product == 0) {
-					$model->Delete_With_Where('entry', array('id'=> $info_entry['id']));
-				}
+			if($update_result_quant_product === 0) {
+				$model->Delete_With_Where('entry', array('id'=> $info_entry['id']));
 			}
 		}
 	}
