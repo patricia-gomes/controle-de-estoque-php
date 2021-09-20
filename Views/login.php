@@ -22,9 +22,9 @@
 				<form method="POST" action="<?php echo BASE_URL; ?>/login/index" class="form-signin">
 
 					<label for="inputUser" class="sr-only">User</label>
-					  	<input type="text" name="user" id="inputEmail" class="form-control" placeholder="User" required autofocus><br/>
+					  	<input type="text" value="admin" name="user" id="inputEmail" class="form-control" placeholder="User" required autofocus><br/>
 					<label for="inputPassword" name="password" class="sr-only">Password</label>
-					  	<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required><br/>
+					  	<input type="password" value="admin321" name="password" id="inputPassword" class="form-control" placeholder="Password" required><br/>
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 				</form>
 			</div>
