@@ -23,12 +23,17 @@ class entryController extends Controller
 		}
 		//--------------------------------------------------------------------------
 		$all_entry = $model->Select_All('entry');
+		$itens_total = 0;
+		$value_total = 0;
 
 		//---Soma o valor total de todas as entradas
 		$quant_total = $helper->sum_quant_total($all_entry, 'quant_product');
 		$select_value_total = $product->select_one_col('entry', 'value_total');
+
 		//Retorna o valor total de todas as entradas
-		$value_total = $helper->sum_value_total($select_value_total);
+		if(!empty($select_value_total)) {
+			$value_total = $helper->sum_value_total($select_value_total);
+		}
 
 		//---Subtrai a quantidade total de entradas com base na saída
 		$all_exits = $model->Select_All('exits');
