@@ -51,9 +51,9 @@
 							    </div>
 							</div>
 							<div class="form-row">
-							    <div class="form-group col-md-2">
+							    <div class="form-group col-md-3">
 									<label for="exampleFormControlInput1">Quantidade</label>
-									<input type="number" name="quant" class="form-control" id="quant" required="required">
+									<input type="text" name="quant" class="form-control" id="quant" required="required">
 							    </div>
 							    <div class="form-group col-md-2">
 							    	<?php if(!empty($info_product_with_id)): ?>

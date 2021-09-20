@@ -1,21 +1,5 @@
 			<div class="col-10 content">
-				<!--- Row form busca e menu button--->
-				<div class="row serach_button">
-					<div class="col-4">
-						
-						<form>
-							<div class="input-group">
-							    <input type="search" class="form-control" placeholder="Pesquisar produto">
-							    <div class="input-group-append">
-							        <button class="btn btn-secondary" type="submit">
-							            <i class="fa fa-search"></i>
-							        </button>
-							    </div>
-							</div>
-						</form>
-					</div><br/><br/>
-				</div>
-				<!-- ./ Row form busca e menu button -->
+
 				<!-- Row form insert -->
 				<div class="row panel">
 					<div class="col-6">
@@ -37,9 +21,9 @@
 							<?php endforeach; ?>
 							<?php endif; ?>
 							<div class="form-row">
-							    <div class="form-group col-md-2">
+							    <div class="form-group col-md-3">
 									<label for="exampleFormControlInput1">Quantidade</label>
-									<input type="number" name="quant" class="form-control" id="quant" required="required">
+									<input type="text" name="quant" class="form-control" id="quant" required="required">
 							    </div>
 							    <div class="form-group col-md-3">
 									<label for="exampleFormControlInput1">Valor total</label>

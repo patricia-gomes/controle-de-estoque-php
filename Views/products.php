@@ -47,14 +47,14 @@
 										<td><?php echo "R$ ".$helper->replace_point_in_comma($product['value_medium']); ?></td>
 										<td><form method="GET" action="<?php echo BASE_URL; ?>/products/edit/<?php echo $product['id']; ?>">
 												<!-- Button trigger modal editar -->
-												<button type="input" formmethod="post" name="id" value="<?php echo $product['id']; ?>"  name="editar" class="btn btn-warning" data-toggle="modal" data-target="#editar" title="Editar">
+												<button type="input" formmethod="post" name="id" value="<?php echo $product['id']; ?>"  name="editar" class="btn btn-warning" title="Editar">
 											  		<i class="fa fa-edit"></i>
 												</button>
 											</form>
 										</td>
 										<td><form method="POST" action="<?php echo BASE_URL; ?>/products/delete">
 												<!-- Button trigger modal excluir -->
-												<button type="input" formmethod="post" name="id_product" value="<?php echo $product['id']; ?>" aria-label="Os produtos que não foram excluidos é porque estão no estoque." class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+												<button type="input" formmethod="post" name="id_product" value="<?php echo $product['id']; ?>" aria-label="Os produtos que não foram excluidos é porque estão no estoque." class="btn btn-danger">
 											  		<i class="fa fa-trash-o"></i>
 												</button>
 											</form>
@@ -62,7 +62,7 @@
 										<td>
 											<form method="POST" action="<?php echo BASE_URL; ?>/stock/index">
 												<!-- Button trigger modal editar -->
-												<button type="input" formmethod="post" name="id" value="<?php echo $product['id']; ?>"  class="btn btn-success" data-toggle="modal" data-target="#editar" title="Estoque">
+												<button type="input" formmethod="post" name="id" value="<?php echo $product['id']; ?>"  class="btn btn-success" title="Estoque">
 											  		<img src="<?php echo BASE_URL; ?>/assets/images/stock.png" alt="">
 												</button>
 											</form>
