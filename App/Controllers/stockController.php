@@ -45,8 +45,7 @@ class stockController extends Controller
 			$id_product = $_POST['id_product'];
 			$quant = $_POST['quant'];
 			$value_product = str_replace(',', '.', $_POST['value_product']);
-			$total = str_replace("R$", "", $_POST['value_total']);
-			$value_total =  str_replace(',', '.', $total);
+			$value_total =  str_replace(',', '.', $_POST['value_total']);
 			date_default_timezone_set('America/Porto_Velho');
 
 			if(!empty($_POST['expirion_date'])) {

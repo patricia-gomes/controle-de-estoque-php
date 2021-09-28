@@ -48,14 +48,14 @@ class productsController extends Controller
 		$model = new Model;
 		$products = new Products();
 
-		if(!empty($_POST['name']) && !empty($_POST['value']) && !empty($_FILES['img'])) {
+		if(!empty($_POST['name']) && !empty($_POST['value'])) {
 			$name = $_POST['name'];
 			//Para o banco de dados aceitar o preço tem de ser inserido com ponto
 			$value = str_replace(',', '.', $_POST['value']);
 			
 			$path_img = $products->upload_img($_FILES['img']);
 			//Envia os dados para o banco
-			$model->Insert('products', array('name'=> $name, 'value_medium'=> $value, 'url_img_product'=>$path_img));
+			$model->Insert('products', array('name'=> $name, 'value_medium'=> $value));
 
 			//redireciona para a exibição de produtos
 			header('Location: '.BASE_URL.'/products');

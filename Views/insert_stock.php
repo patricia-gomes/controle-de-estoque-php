@@ -53,24 +53,24 @@
 							<div class="form-row">
 							    <div class="form-group col-md-3">
 									<label for="exampleFormControlInput1">Quantidade</label>
-									<input type="text" name="quant" class="form-control" id="quant" required="required">
+									<input type="number" name="quant" class="form-control" id="quant" required="required">
 							    </div>
 							    <div class="form-group col-md-2">
 							    	<?php if(!empty($info_product_with_id)): ?>
 								    	<?php foreach($info_product_with_id as $info_product): ?>
 											<label for="exampleFormControlSelect1">Preço</label>
-												<input type="text" name="value_product" value="<?php echo str_replace('.', ',', $info_product['value_medium']); ?>" class="form-control" id="value" required="required">
+												<input type="text" pattern="([0-9]{1,2}\.)?[0-9]{1,2},[0-9]{2}$" name="value_product" value="<?php echo str_replace('.', ',', $info_product['value_medium']); ?>" class="form-control" id="value" required="required">
 										<?php endforeach; ?>
 									<?php else: ?>
 										<label for="exampleFormControlSelect1">Preço</label>
-											<input type="text" name="value_product" class="form-control" id="value" required="required">
+											<input type="text" pattern="([0-9]{1,2}\.)?[0-9]{1,2},[0-9]{2}$" name="value_product" class="form-control" id="value" required="required">
 									<?php endif; ?>
 								</div>
 							</div>
 							<div class="form-row">					
 							    <div class="form-group col-md-3">
 									<label for="exampleFormControlInput1">Valor total</label>
-									<input type="text" name="value_total" class="form-control" id="result" required="required">
+									<input type="text" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" name="value_total" class="form-control" id="result" required="required">
 							    </div>
 							</div>
 							<button type="submit" class="btn btn-primary">Inserir no estoque</button>

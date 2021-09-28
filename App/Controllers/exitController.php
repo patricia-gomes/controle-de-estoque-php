@@ -82,7 +82,8 @@ class exitController extends Controller
 		$model = new Model();
 		$exits = new Exits();
 
-		if(!empty($_POST['id_entry']) && !empty($_POST['quant']) && !empty($_POST['name']) && !empty($_POST['value_total']) || $_POST['value'] == 0) {
+		if(!empty($_POST['id_entry']) && !empty($_POST['quant']) && !empty($_POST['name'])
+			&& !empty($_POST['value_total']) || $_POST['value'] == 0) {
 
 			$value_product = str_replace(',', '.', $_POST['value']);
 			$value_total = str_replace(',', '.', $_POST['value_total']);
@@ -90,14 +91,18 @@ class exitController extends Controller
 
 			//Não permite remover mais produtos do que tem no estoque
 			$current_quant = $exits->select_a_column('quant_product', 'entry', $_POST['id_entry']);
+
 			/*Verifica se a quantidade digitada pelo user é menor ou igual a quantidade disponivel em estoque */
 			if($_POST['quant'] <= $current_quant['quant_product']) {
 
 				//Busca o id do produto na tabela products pelo nome
 				$info_product = $model->Select_With_Where('products', array('name'=>$_POST['name']));
-
-				foreach($info_product as $value) {
-					$id_product = $value;
+				if(!empty($info_product)) {
+					foreach($info_product as $value) {
+						$id_product = $value;
+					}
+				} else {
+					echo "id_product não foi informado!";exit;
 				}
 				//Insere na tabela exits
 				$model->Insert('exits', array('name_product'=> $_POST['name'], 'value_product'=> $value_product, 'quant_exit'=> $_POST['quant'], 'id_entry'=> $_POST['id_entry'], 'value_total'=> $value_total, 'id_product'=> $id_product['id'], 'date_exit'=> date("Y-m-d H:i:s")));
