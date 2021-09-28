@@ -28,22 +28,9 @@
 								    </div>
 								    <div class="form-group col-md-3">
 										<label for="exampleFormControlInput1">Preço médio</label>
-										<input type="text" class="form-control" id="exampleFormControlInput2" name="value" value="<?php echo $helper->replace_point_in_comma($product['value_medium']); ?>" required="required" placeholder="15,90">
+										<input type="text" pattern="([0-9]{1,2}\.)?[0-9]{1,2},[0-9]{2}$" class="form-control" name="value" value="<?php echo $helper->replace_point_in_comma($product['value_medium']); ?>" required="required" placeholder="15,90">
 								    </div>
 								</div>
-								<div class="form-row">
-									<?php if(empty($product['url_img_product'])): ?>
-										<img src="<?php echo BASE_URL; ?>/assets/images/box.png">
-									<?php else: ?>
-										<img src="<?php echo BASE_URL.'/'.$product['url_img_product']; ?>" width="240" height="240">
-									<?php endif; ?>
-								</div>
-								<div class="form-row">
-								    <div class="custom-file col-md-6">
-										<input type="file" class="custom-file-input" id="customFile" name="img" value="<?php echo BASE_URL.'/'.$product['url_img_product']; ?>">
-										<label class="custom-file-label" for="customFile">Alterar imagem</label>
-									</div>
-								</div><br/><br/>
 								<input type="hidden" name="id_product" value="<?php echo $product['id']; ?>">
 							<?php endforeach; ?>
 							<div class="form-row">

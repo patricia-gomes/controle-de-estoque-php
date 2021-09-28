@@ -11,7 +11,7 @@
 							    </div>
 							    <div class="form-group col-md-3">
 									<label for="exampleFormControlInput1">Preço médio</label>
-									<input type="text" class="form-control" id="exampleFormControlInput2" name="value" required="required" placeholder="15,90">
+									<input type="text" pattern="([0-9]{1,2}\.)?[0-9]{1,2},[0-9]{2}$" class="form-control" name="value" required="required" placeholder="15,90">
 							    </div>
 							</div>
 							<div class="form-row">
