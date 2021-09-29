@@ -6,18 +6,18 @@
 						<form method="POST" action="<?php echo BASE_URL; ?>/supplier/register">
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="exampleFormControlInput1">Nome do fornecedor</label>
-									<input type="text" name="name" class="form-control" id="exampleFormControlInput1" required="required">
+									<label>Nome do fornecedor</label>
+									<input type="text" name="name" class="form-control" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-									<label for="exampleFormControlInput1">CNPJ</label>
-									<input type="text" name="cnpj" class="form-control" id="exampleFormControlInput1" placeholder="15.174.045/0001-51" required="required">
+									<label>CNPJ</label>
+									<input type="text" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" name="cnpj" class="form-control" placeholder="15.174.045/0001-51" required="required">
 							    </div>
 							</div>
 							<div class="form-row">
 							    <div class="form-group col-md-8">
-									<label for="exampleFormControlInput1">Endereço</label>
-									<input type="text" name="address" class="form-control" id="exampleFormControlInput1" required="required">
+									<label>Endereço</label>
+									<input type="text" name="address" class="form-control" required="required">
 							    </div>
 							    <div class="form-group col-md-4">
 									<label for="exampleFormControlInput1">Número</label>
@@ -26,22 +26,22 @@
 							</div>
 							<div class="form-row">
 							    <div class="form-group col-md-8">
-									<label for="exampleFormControlInput1">Bairro</label>
-									<input type="text" name="neighborhood" class="form-control" id="exampleFormControlInput1" required="required">
+									<label>Bairro</label>
+									<input type="text" name="neighborhood" class="form-control" required="required">
 							    </div>
 							    <div class="form-group col-md-4">
-									<label for="exampleFormControlInput1">Telefone</label>
-									<input type="tel" name="phone" class="form-control" id="exampleFormControlInput1" required="required">
+									<label>Telefone</label>
+									<input type="tel" pattern="\([0-9]{2}\)[\s][0-9]{5}-[0-9]{4}" name="phone" class="form-control" placeholder="(99) 99999-9999" required="required">
 							    </div>
 							</div>
 							<div class="form-row">
 							    <div class="form-group col-md-6">
 									<label for="exampleFormControlInput1">Cidade</label>
-									<input type="text" name="city" class="form-control" id="exampleFormControlInput1" required="required">
+									<input type="text" name="city" class="form-control" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-								    <label for="exampleFormControlSelect1">Estado</label>
-								    <select class="form-control" name="id_state" id="exampleFormControlSelect1" required="required">
+								    <label>Estado</label>
+								    <select class="form-control" name="id_state" required="required">
 								      <option></option>
 								      	<?php if(!empty($states_all)):  ?>
 								      		<?php foreach($states_all as $state): ?>
@@ -53,7 +53,7 @@
 							</div>
 							<div class="form-row">
 							    <div class="form-group col-md-6">
-									<label for="exampleFormControlInput1">Email</label>
+									<label>Email</label>
 									<input type="email" name="email" class="form-control" id="exampleFormControlInput1" required="required">
 							    </div>
 							</div>

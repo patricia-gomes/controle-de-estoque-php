@@ -24,42 +24,42 @@
 								<?php foreach($data_supplier as $info_supplier): ?>
 									<div class="form-row">
 										<div class="form-group col-md-6">
-											<label for="exampleFormControlInput1">Nome do fornecedor</label>
-											<input type="text" name="name" value="<?php echo $info_supplier['name']; ?>" class="form-control" id="exampleFormControlInput1" required="required">
+											<label>Nome do fornecedor</label>
+											<input type="text" name="name" value="<?php echo $info_supplier['name']; ?>" class="form-control" required="required">
 									    </div>
 									    <div class="form-group col-md-6">
-											<label for="exampleFormControlInput1">CNPJ</label>
-											<input type="text" name="cnpj" value="<?php echo $info_supplier['cnpj']; ?>" class="form-control" id="exampleFormControlInput1" placeholder="15.174.045/0001-51" required="required">
+											<label>CNPJ</label>
+											<input type="text" name="cnpj" value="<?php echo $info_supplier['cnpj']; ?>" class="form-control" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="15.174.045/0001-51" required="required">
 									    </div>
 									</div>
 									<div class="form-row">
 									    <div class="form-group col-md-8">
-											<label for="exampleFormControlInput1">Endereço</label>
-											<input type="text" name="address" value="<?php echo $info_supplier['address']; ?>" class="form-control" id="exampleFormControlInput1" required="required">
+											<label>Endereço</label>
+											<input type="text" name="address" value="<?php echo $info_supplier['address']; ?>" class="form-control" required="required">
 									    </div>
 									    <div class="form-group col-md-4">
-											<label for="exampleFormControlInput1">Número</label>
-											<input type="number" name="number_address" value="<?php echo $info_supplier['number_address']; ?>" class="form-control" id="exampleFormControlInput1" required="required">
+											<label>Número</label>
+											<input type="number" name="number_address" value="<?php echo $info_supplier['number_address']; ?>" class="form-control" required="required">
 									    </div>
 									</div>
 									<div class="form-row">
 									    <div class="form-group col-md-8">
-											<label for="exampleFormControlInput1">Bairro</label>
-											<input type="text" name="neighborhood" value="<?php echo $info_supplier['neighborhood']; ?>" class="form-control" id="exampleFormControlInput1" required="required">
+											<label>Bairro</label>
+											<input type="text" name="neighborhood" value="<?php echo $info_supplier['neighborhood']; ?>" class="form-control" required="required">
 									    </div>
 									    <div class="form-group col-md-4">
-											<label for="exampleFormControlInput1">Telefone</label>
-											<input type="tel" name="phone" value="<?php echo $info_supplier['phone']; ?>" class="form-control" id="exampleFormControlInput1" required="required">
+											<label>Telefone</label>
+											<input type="tel" name="phone" pattern="\([0-9]{2}\)[\s][0-9]{5}-[0-9]{4}" value="<?php echo $info_supplier['phone']; ?>" class="form-control" required="required">
 									    </div>
 									</div>
 									<div class="form-row">
 									    <div class="form-group col-md-6">
-											<label for="exampleFormControlInput1">Cidade</label>
-											<input type="text" name="city" value="<?php echo $info_supplier['city']; ?>" class="form-control" id="exampleFormControlInput1" required="required">
+											<label>Cidade</label>
+											<input type="text" name="city" value="<?php echo $info_supplier['city']; ?>" class="form-control" required="required">
 									    </div>
 									    <div class="form-group col-md-6">
-										    <label for="exampleFormControlSelect1">Estado</label>
-										    <select class="form-control" name="id_state" id="exampleFormControlSelect1" required="required">
+										    <label>Estado</label>
+										    <select class="form-control" name="id_state" required="required">
 										    	
 											      	<option value="<?php echo $info_supplier['id_state']; ?>">
 											      		<?php echo $supplier->select_state_from_supplier($info_supplier['id_state']); ?>	
@@ -76,8 +76,8 @@
 									</div>
 									<div class="form-row">
 									    <div class="form-group col-md-6">
-											<label for="exampleFormControlInput1">Email</label>
-											<input type="email" name="email" value="<?php echo $info_supplier['email']; ?>" class="form-control" id="exampleFormControlInput1" required="required">
+											<label>Email</label>
+											<input type="email" name="email" value="<?php echo $info_supplier['email']; ?>" class="form-control" required="required">
 									    </div>
 									</div>
 									<input type="hidden" name="id_supplier" value="<?php echo $info_supplier['id']; ?>">
