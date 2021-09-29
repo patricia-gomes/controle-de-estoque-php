@@ -50,7 +50,7 @@ class dashboardController extends Controller
 		$entry = new Entry();
 
 		//--------------------------------------------------------------------------
-		$validity = $entry->select_validity();
+		$validity = $entry->Select_All('entry');
 
 		//Verificando quais produtos estão perto de vencer a validade
 		$winning_products  = $stock->validity_running_out($validity);
