@@ -26,7 +26,6 @@
 						<table class="table table-bordered table-striped table-hover table-sm">
 							<thead class="thead-light">
 								<tr>
-									<th>Imagem</th>
 									<th>Produto</th>
 									<th>Preço</th>
 									<th>Editar</th>
@@ -38,11 +37,6 @@
 								<?php if(!empty($all_products)): ?>
 									<?php foreach($all_products as $product): ?>
 									<tr>
-										<?php if(!empty($product['url_img_product'])): ?>
-											<td><img src="<?php echo $product['url_img_product']; ?>" width="100" height="100"></td>
-										<?php else: ?>
-											<td><img src="<?php echo BASE_URL; ?>/assets/images/box.png" width="100" height="100		"></td>
-										<?php endif; ?>
 										<td><?php echo $product['name']; ?></td>
 										<td><?php echo "R$ ".$helper->replace_point_in_comma($product['value_medium']); ?></td>
 										<td><form method="GET" action="<?php echo BASE_URL; ?>/products/edit/<?php echo $product['id']; ?>">

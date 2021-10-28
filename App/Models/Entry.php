@@ -57,7 +57,7 @@ class Entry extends Model
 	//Seleciona apenas a coluna de validade do produto
 	public function select_validity()		
 	{	
-		$query = $this->pdo->query("SELECT name_product, expirion_date  FROM entry WHERE expirion_date AND quant_product > 0");
+		$query = $this->pdo->query("SELECT name_product, expirion_date  FROM entry WHERE expirion_date AND quant_product > 0 LIMIT 4");
 		$query->execute();
 
 		if($query->rowCount() > 0) {

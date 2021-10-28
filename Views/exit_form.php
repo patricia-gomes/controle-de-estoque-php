@@ -9,11 +9,11 @@
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										<label for="exampleFormControlInput1">Nome do produto</label>
-										<input type="text" class="form-control" id="exampleFormControlInput1" name="name" value="<?php echo $product['name_product']; ?>" required="required">
+										<input type="text" class="form-control" name="name" value="<?php echo $product['name_product']; ?>" required="required">
 								    </div>
 								    <div class="form-group col-md-3">
 										<label for="exampleFormControlInput1">Preço médio</label>
-										<input type="text" class="form-control" id="exampleFormControlInput2" name="value" id="value" value="<?php echo str_replace('.', ',', $product['value_product']); ?>" required="required" placeholder="15,90">
+										<input type="text" pattern="([0-9]{1,2}\.)?[0-9]{1,2},[0-9]{2}$" class="form-control" name="value" id="value" value="<?php echo str_replace('.', ',', $product['value_product']); ?>" required="required" placeholder="15,90">
 								    </div>
 								</div>
 							
@@ -23,11 +23,11 @@
 							<div class="form-row">
 							    <div class="form-group col-md-3">
 									<label for="exampleFormControlInput1">Quantidade</label>
-									<input type="text" name="quant" class="form-control" id="quant" required="required">
+									<input type="number" name="quant" class="form-control" id="quant" required="required">
 							    </div>
 							    <div class="form-group col-md-3">
 									<label for="exampleFormControlInput1">Valor total</label>
-									<input type="text" name="value_total" class="form-control" id="result" required="required">
+									<input type="text" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" name="value_total" class="form-control" id="result" required="required">
 							    </div>
 							</div>
 							<div class="form-row">

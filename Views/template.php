@@ -45,8 +45,6 @@
 		</div>
 	</div>
 	<script type="text/javascript" > var BASE_URL = '<?php echo BASE_URL; ?>'; </script>
-	<!--- Jquery --->
-	<script type="text/javascript" src="<?php echo BASE_URL; ?>/assets/js/jquery-3.5.1.min.js"></script>
 	<!---JS Bootstrap --->
 	<script type="text/javascript" src="<?php echo BASE_URL; ?>/assets/js/bootstrap.bundle.min.js"></script>
 	<!--- JS -->
