@@ -11,7 +11,7 @@
 							    </div>
 							    <div class="form-group col-md-6">
 									<label>CNPJ</label>
-									<input type="text" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" name="cnpj" class="form-control" placeholder="15.174.045/0001-51" required="required">
+									<input type="text" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"  data-input="cnpj" id="cnpj" name="cnpj" maxlength="18" class="form-control" placeholder="00.000.000/0000-00" required="required">
 							    </div>
 							</div>
 							<div class="form-row">
@@ -30,8 +30,8 @@
 									<input type="text" name="neighborhood" class="form-control" required="required">
 							    </div>
 							    <div class="form-group col-md-4">
-									<label>Telefone</label>
-									<input type="tel" pattern="\([0-9]{2}\)[\s][0-9]{5}-[0-9]{4}" name="phone" class="form-control" placeholder="(99) 99999-9999" required="required">
+									<label>Celular</label>
+									<input type="tel" pattern="\([0-9]{2}\)[\s][0-9]{5}-[0-9]{4}" maxlength="15" data-input="cel" name="phone" class="form-control" placeholder="(99) 99999-9999" required="required">
 							    </div>
 							</div>
 							<div class="form-row">

@@ -19,6 +19,7 @@
 				<!-- Row form insert -->
 				<div class="row panel">
 					<div class="col-6">
+						<h3>Editar fornecedor</h3>	
 						<form method="POST" action="<?php echo BASE_URL; ?>/supplier/update">
 							<?php if(!empty($data_supplier)): ?>
 								<?php foreach($data_supplier as $info_supplier): ?>
@@ -29,7 +30,7 @@
 									    </div>
 									    <div class="form-group col-md-6">
 											<label>CNPJ</label>
-											<input type="text" name="cnpj" value="<?php echo $info_supplier['cnpj']; ?>" class="form-control" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="15.174.045/0001-51" required="required">
+											<input type="text" name="cnpj" value="<?php echo $info_supplier['cnpj']; ?>" data-input="cnpj" class="form-control" maxlength="18" pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})" placeholder="00.000.000/0000-00" required="required">
 									    </div>
 									</div>
 									<div class="form-row">
@@ -49,7 +50,7 @@
 									    </div>
 									    <div class="form-group col-md-4">
 											<label>Telefone</label>
-											<input type="tel" name="phone" pattern="\([0-9]{2}\)[\s][0-9]{5}-[0-9]{4}" value="<?php echo $info_supplier['phone']; ?>" class="form-control" required="required">
+											<input type="tel" name="phone" pattern="\([0-9]{2}\)[\s][0-9]{5}-[0-9]{4}"  maxlength="15" data-input="cel" value="<?php echo $info_supplier['phone']; ?>" class="form-control" required="required">
 									    </div>
 									</div>
 									<div class="form-row">

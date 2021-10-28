@@ -89,6 +89,12 @@ class exitController extends Controller
 			$value_total = str_replace(',', '.', $_POST['value_total']);
 			date_default_timezone_set('America/Porto_Velho');
 
+			//Bloqueia valores monetarios invalidos
+			if($value_product == '0.00' || $value_product == '0.0' || $value_product == '0.') {
+				header('Location: '.BASE_URL.'/entry');
+				exit;
+			}
+
 			//Não permite remover mais produtos do que tem no estoque
 			$current_quant = $exits->select_a_column('quant_product', 'entry', $_POST['id_entry']);
 
