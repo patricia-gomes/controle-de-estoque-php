@@ -3,7 +3,7 @@
 				<div class="row panel">
 					<div class="col-6">
 						<h3>Inserir produto</h3>
-						<form method="POST" action="<?php echo BASE_URL; ?>/products/register" enctype="multipart/form-data">
+						<form method="POST" action="<?php echo BASE_URL; ?>/products/register">
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="exampleFormControlInput1">Nome do produto</label>

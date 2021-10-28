@@ -48,6 +48,12 @@ class stockController extends Controller
 			$value_total =  str_replace(',', '.', $_POST['value_total']);
 			date_default_timezone_set('America/Porto_Velho');
 
+			//Bloqueia valores monetarios invalidos
+			if($value_product == '0.0' ||  $value_product == '0.00' || $value_product == '0' ||  $value_product == '0.') {
+				header('Location: '.BASE_URL.'/stock/index');
+				exit;
+			}
+
 			if(!empty($_POST['expirion_date'])) {
 				$expirion_date = $_POST['expirion_date'];
 			} else {
@@ -77,7 +83,7 @@ class stockController extends Controller
 			));
 			header('Location: '.BASE_URL.'/entry');
 		} else {
-			echo "Algum campo não foi preenchido!";
+			header('Location: '.BASE_URL.'/stock/index');
 		}
 	}
 

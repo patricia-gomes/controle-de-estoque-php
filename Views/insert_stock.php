@@ -59,11 +59,11 @@
 							    	<?php if(!empty($info_product_with_id)): ?>
 								    	<?php foreach($info_product_with_id as $info_product): ?>
 											<label for="exampleFormControlSelect1">Preço</label>
-												<input type="text" pattern="([0-9]{1,2}\.)?[0-9]{1,2},[0-9]{2}$" name="value_product" value="<?php echo str_replace('.', ',', $info_product['value_medium']); ?>" class="form-control" id="value" required="required">
+												<input type="text" name="value_product" pattern="([0-9]{1,2}\.)?[0-9]{1,2},[0-9]{2}$" value="<?php echo str_replace('.', ',', $info_product['value_medium']); ?>" class="form-control" id="value" required="required">
 										<?php endforeach; ?>
 									<?php else: ?>
 										<label for="exampleFormControlSelect1">Preço</label>
-											<input type="text" pattern="([0-9]{1,2}\.)?[0-9]{1,2},[0-9]{2}$" name="value_product" class="form-control" id="value" required="required">
+											<input type="text" name="value_product" pattern="([0-9]{1,2}\.)?[0-9]{1,2},[0-9]{2}$" class="form-control" id="value" required="required">
 									<?php endif; ?>
 								</div>
 							</div>
