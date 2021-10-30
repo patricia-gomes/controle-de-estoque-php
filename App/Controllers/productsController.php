@@ -52,6 +52,12 @@ class productsController extends Controller
 			$name = $_POST['name'];
 			//Para o banco de dados aceitar o preço tem de ser inserido com ponto
 			$value = str_replace(',', '.', $_POST['value']);
+
+			//Bloqueia valores monetarios invalidos
+			if($value == '0.0' ||  $value == '0.00' || $value == '0' ||  $value == '0.') {
+				header('Location: '.BASE_URL.'/products/insert');
+				exit;
+			}
 			
 			$path_img = $products->upload_img($_FILES['img']);
 			//Envia os dados para o banco
@@ -113,6 +119,12 @@ class productsController extends Controller
 			if (!empty($_POST['name']) || !empty($_POST['value'])) {
 				$value = str_replace('R$', ' ', $_POST['value']);//Substituindo R$ por ''
 				$value = str_replace(',', '.', $value);//Substituindo , por .
+
+				//Bloqueia valores monetarios invalidos
+    			if($value == '0.0' ||  $value == '0.00' || $value == '0' ||  $value == '0.') {
+    				header('Location: '.BASE_URL.'/products');
+    				exit;
+    			}
 
 				//Atualiza as duas colunas na tabela products
 				$model->Update_With_Where('products', array(
